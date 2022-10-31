@@ -25,7 +25,7 @@ export const HeaderComponent = (props: HeaderComponentProps) => {
             </div>
             <div className={s.basketContainer}>
                 <IconButton>
-                    <Badge badgeContent={props.basketItemsCount} color="secondary" invisible={false} variant={'standard'}>
+                    <Badge badgeContent={props.basketItemsCount} color="secondary" invisible={props.basketItemsCount < 1} variant={'standard'}>
                         <ShoppingBasket color={'primary'}/>
                     </Badge>
                 </IconButton>
