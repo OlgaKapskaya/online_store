@@ -1,0 +1,45 @@
+.cardContainer{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 450px;
+    box-shadow: 1px 1px 5px rgba(0,0,0, .2);
+    margin: 10px;
+}
+.formProductPhoto{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 70%;
+}
+.productPhoto{
+    margin: 10px;
+    width: 90%;
+}
+.productName{
+    align-self: flex-start;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 5px 10px;
+}
+.info{
+    align-self: flex-start;
+    margin-left: 10px;
+    font-size: 12px;
+}
+.price{
+    font-weight: bold;
+    align-self: flex-start;
+    margin: 20px 10px;
+}
+
+.buttonBuy{
+    margin: 10px;
+    align-self: flex-end;
+}
+.aboutProductCount{
+    align-self: flex-start;
+    margin-right: 10px;
+    font-size: 12px;
+}

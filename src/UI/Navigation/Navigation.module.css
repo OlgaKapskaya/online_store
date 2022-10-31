@@ -1,0 +1,13 @@
+.NavigationContainer{
+    background-color: #161616;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: whitesmoke;
+}
+.navLink{
+    width: 100%;
+    height: 10%;
+    margin: 10px;
+}
