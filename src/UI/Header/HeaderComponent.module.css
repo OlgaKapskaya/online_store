@@ -34,3 +34,13 @@
 .basketContainer{
     margin: 10px;
 }
+.totalPrice{
+    margin: 10px;
+}
+.buttonGroup{
+    align-self: center;
+    margin: 10px;
+}
+.buttonGroup button{
+    margin: 5px;
+}

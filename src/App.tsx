@@ -26,10 +26,14 @@ function App() {
     const setInBasketHandler = (buyProduct: BasketProductType) => {
         setInBasket([...inBasket, buyProduct])
     }
+    const clearBasket = () => {
+        localStorage.clear()
+        setInBasket([])
+    }
 
     return (
         <div className="App">
-            <HeaderComponent basketItemsCount={inBasket.length}/>
+            <HeaderComponent basketProduct={inBasket} clearBasket={clearBasket}/>
             <Navigation/>
             <div className={'content'}>
                 <ShopContent data={state} setInBasket={setInBasketHandler}/>

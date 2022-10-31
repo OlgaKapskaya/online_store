@@ -1,11 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import s from './HeaderComponent.module.css'
-import {Badge, Button, IconButton} from "@material-ui/core";
+import {Badge, Button, Drawer, IconButton} from "@material-ui/core";
 import {QueryBuilderOutlined, ShoppingBasket} from "@material-ui/icons";
+import {BasketProductType} from "../../BLL/types";
+import {BasketItem} from "./BasketItem/BasketItem";
+
 type HeaderComponentProps = {
-    basketItemsCount: number
+    basketProduct: BasketProductType[]
+    clearBasket: () => void
 }
 export const HeaderComponent = (props: HeaderComponentProps) => {
+    const [isVisible, setIsVisible] = useState(false)
+    const onClickBasketHandler = () => {
+        setIsVisible(true)
+    }
     return (
         <div className={s.HeaderContainer}>
             <div className={s.logoContainer}>
@@ -24,11 +32,30 @@ export const HeaderComponent = (props: HeaderComponentProps) => {
 
             </div>
             <div className={s.basketContainer}>
-                <IconButton>
-                    <Badge badgeContent={props.basketItemsCount} color="secondary" invisible={props.basketItemsCount < 1} variant={'standard'}>
+                <IconButton onClick={onClickBasketHandler}>
+                    <Badge badgeContent={props.basketProduct.length} color="secondary"
+                           invisible={props.basketProduct.length < 1} variant={'standard'}>
                         <ShoppingBasket color={'primary'}/>
                     </Badge>
                 </IconButton>
+                {isVisible &&
+                    <Drawer anchor={'right'} open={isVisible} onClose={() => setIsVisible(false)}>
+                        <div className={s.totalPrice}>
+                            {props.basketProduct.length>0 && <span>Всего <b>{props.basketProduct.length}</b> товаров общей стоимостью:</span>}
+                            {(props.basketProduct.length <= 0) && <span>Ваша корзина пуста</span>}
+                        </div>
+                        <div className={s.buttonGroup}>
+                            <Button color={'primary'}
+                                    variant={'contained'}
+                                    disabled={props.basketProduct.length <= 0}
+                                    onClick={props.clearBasket}>Очистить корзину</Button>
+                            <Button color={'secondary'}
+                                    variant={'contained'}
+                                    disabled={props.basketProduct.length <= 0}>Оформить заказ</Button>
+                        </div>
+                        {props.basketProduct.map(elem => <BasketItem basketItem={elem}/>)}
+
+                    </Drawer>}
             </div>
 
         </div>

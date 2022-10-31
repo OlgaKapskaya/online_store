@@ -1,0 +1,32 @@
+.cardContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 400px;
+    max-height: 200px;
+    box-shadow: 1px 1px 5px rgba(0,0,0, .2);
+    margin: 5px;
+}
+.formProductPhoto{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.productPhoto{
+    margin: 10px;
+    width: 100px;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px;
+}
+.productName{
+    align-self: flex-start;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
