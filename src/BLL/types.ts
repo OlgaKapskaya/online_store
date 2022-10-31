@@ -13,3 +13,12 @@ export type ProductDataType = {
 
 }
 export type CategoriesType = 'Mac' | 'iPad' | 'iPhone' | 'Watch' | 'TV' | 'AirPods' | 'Аксессуары'
+
+export type BasketProductType = {
+    productID: string
+    productName: string
+    productPhoto: string
+    productArticle: string
+    productPrice: number
+    productCountToBuy: number
+}

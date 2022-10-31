@@ -1,15 +1,17 @@
 import React from "react";
 import s from './HeaderComponent.module.css'
-import {IconButton} from "@material-ui/core";
+import {Badge, Button, IconButton} from "@material-ui/core";
 import {QueryBuilderOutlined, ShoppingBasket} from "@material-ui/icons";
-
-export const HeaderComponent = () => {
+type HeaderComponentProps = {
+    basketItemsCount: number
+}
+export const HeaderComponent = (props: HeaderComponentProps) => {
     return (
         <div className={s.HeaderContainer}>
             <div className={s.logoContainer}>
                 <img src={'https://pngimg.com/uploads/apple_logo/apple_logo_PNG19674.png'}
-                       alt={'logo'}
-                       className={s.logo}/>
+                     alt={'logo'}
+                     className={s.logo}/>
                 <span>APPLE SHOP</span>
             </div>
 
@@ -21,9 +23,13 @@ export const HeaderComponent = () => {
                 </div>
 
             </div>
-            <IconButton>
-                <ShoppingBasket/>
-            </IconButton>
+            <div className={s.basketContainer}>
+                <IconButton>
+                    <Badge badgeContent={props.basketItemsCount} color="secondary" invisible={false} variant={'standard'}>
+                        <ShoppingBasket color={'primary'}/>
+                    </Badge>
+                </IconButton>
+            </div>
 
         </div>
     )
