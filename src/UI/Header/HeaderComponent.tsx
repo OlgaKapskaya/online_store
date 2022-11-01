@@ -8,6 +8,8 @@ import {BasketItem} from "./BasketItem/BasketItem";
 type HeaderComponentProps = {
     basketProduct: BasketProductType[]
     clearBasket: () => void
+    onChangeCountItemToBuy: (productID: string, newCount: number) => void
+    onRemoveItemFromBasket: (productID: string) => void
 }
 export const HeaderComponent = (props: HeaderComponentProps) => {
     const [isVisible, setIsVisible] = useState(false)
@@ -60,7 +62,9 @@ export const HeaderComponent = (props: HeaderComponentProps) => {
                                     variant={'contained'}
                                     disabled={props.basketProduct.length <= 0}>Оформить заказ</Button>
                         </div>
-                        {props.basketProduct.map(elem => <BasketItem basketItem={elem}/>)}
+                        {props.basketProduct.map(elem => <BasketItem basketItem={elem}
+                                                                     onChangeCountItemToBuy={props.onChangeCountItemToBuy}
+                                                                     onRemoveItemFromBasket={props.onRemoveItemFromBasket}/>)}
 
                     </Drawer>}
             </div>
