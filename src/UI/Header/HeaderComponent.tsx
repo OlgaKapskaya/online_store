@@ -11,9 +11,10 @@ type HeaderComponentProps = {
 }
 export const HeaderComponent = (props: HeaderComponentProps) => {
     const [isVisible, setIsVisible] = useState(false)
-    const onClickBasketHandler = () => {
-        setIsVisible(true)
-    }
+    const onClickBasketHandler = () => setIsVisible(true)
+    let totalPrice = props.basketProduct.reduce((sum, current) =>
+        sum + current.productPrice * current.productCountToBuy, 0)
+
     return (
         <div className={s.HeaderContainer}>
             <div className={s.logoContainer}>
@@ -39,9 +40,15 @@ export const HeaderComponent = (props: HeaderComponentProps) => {
                     </Badge>
                 </IconButton>
                 {isVisible &&
-                    <Drawer anchor={'right'} open={isVisible} onClose={() => setIsVisible(false)}>
+                    <Drawer anchor={'right'}
+                            open={isVisible}
+                            onClose={() => setIsVisible(false)}>
                         <div className={s.totalPrice}>
-                            {props.basketProduct.length>0 && <span>Всего <b>{props.basketProduct.length}</b> товаров общей стоимостью:</span>}
+                            {props.basketProduct.length > 0 &&
+                                <div>
+                                    <div>Всего <b>{props.basketProduct.length}</b> наименований </div>
+                                    <div>общей стоимостью: <b>{totalPrice} BYN</b></div>
+                                </div>}
                             {(props.basketProduct.length <= 0) && <span>Ваша корзина пуста</span>}
                         </div>
                         <div className={s.buttonGroup}>

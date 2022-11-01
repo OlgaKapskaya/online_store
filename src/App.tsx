@@ -27,7 +27,7 @@ function App() {
         setInBasket([...inBasket, buyProduct])
     }
     const clearBasket = () => {
-        localStorage.clear()
+        localStorage.removeItem('inBasket')
         setInBasket([])
     }
 

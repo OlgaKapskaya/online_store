@@ -1,11 +1,16 @@
 .cardContainer{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: flex-start;
     width: 400px;
     max-height: 200px;
     box-shadow: 1px 1px 5px rgba(0,0,0, .2);
     margin: 5px;
+}
+.productFullInfo{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
 }
 .formProductPhoto{
     display: flex;
@@ -24,9 +29,28 @@
     justify-content: center;
     margin: 10px;
 }
+.deleteButton{
+    margin: 10px;
+}
+.count{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-size: 12px;
+}
+.count span{
+    margin-right: 10px;
+}
+
+
 .productName{
     align-self: flex-start;
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 10px;
 }
+
+
+

@@ -36,6 +36,7 @@
 }
 .totalPrice{
     margin: 10px;
+    flex-wrap: wrap;
 }
 .buttonGroup{
     align-self: center;
