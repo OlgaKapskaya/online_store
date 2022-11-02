@@ -1,7 +1,7 @@
 import React from "react";
 import s from './ProductCard.module.css'
 import {BasketProductType, ProductDataType} from "../../../BLL/types";
-import {IconButton} from "@material-ui/core";
+import {Button} from "@material-ui/core";
 import {ShoppingCartOutlined} from "@material-ui/icons";
 
 type ProductCardPropsType = {
@@ -20,6 +20,7 @@ export const ProductCard = (props: ProductCardPropsType) => {
         }
         props.setInBasket(newProduct)
     }
+
     return (
         <div className={s.cardContainer}>
             <form className={s.formProductPhoto}>
@@ -32,10 +33,11 @@ export const ProductCard = (props: ProductCardPropsType) => {
             <div className={s.price}>{props.product.productPrice} BYN</div>
 
             <div className={s.buttonBuy}>
-                {/*<span className={s.aboutProductCount}> Доступно к заказу: {props.product.productCount} </span>*/}
-                <IconButton color={'primary'} onClick={onClickSetInBasketHandler}>
-                    <ShoppingCartOutlined/>
-                </IconButton>
+                <Button color={'secondary'}
+                        variant={'contained'}
+                        onClick={onClickSetInBasketHandler}
+                        startIcon={<ShoppingCartOutlined/>}>В корзину
+                </Button>
             </div>
 
         </div>

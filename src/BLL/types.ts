@@ -1,5 +1,6 @@
 export type StateType = {
     productData: ProductDataType[]
+    categoriesData: CategoriesType[]
 }
 export type ProductDataType = {
     productID: string
@@ -12,8 +13,13 @@ export type ProductDataType = {
     productCategories: CategoriesType
 
 }
-export type CategoriesType = 'Mac' | 'iPad' | 'iPhone' | 'Watch' | 'TV' | 'AirPods' | 'Аксессуары'
-
+//export type CategoriesType = 'Mac' | 'iPad' | 'iPhone' | 'Watch' |  'AirPods' | 'Аксессуары'
+export type CategoriesType = {
+    type: string
+    model?: {
+        name: string
+    }
+}
 export type BasketProductType = {
     productID: string
     productName: string

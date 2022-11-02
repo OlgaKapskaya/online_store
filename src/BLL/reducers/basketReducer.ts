@@ -32,7 +32,7 @@ type RemoveItemFromBasketActionType = {
     productID: string
 }
 
-export const basketReducer = (basket: BasketProductType[], action: BasketFullActionType) => {
+export const basketReducer = (basket: BasketProductType[], action: BasketFullActionType): BasketProductType[] => {
     switch (action.type) {
         case ADD_INTO_BASKET_ALL_ITEMS:
             return action.buyProducts
@@ -48,18 +48,18 @@ export const basketReducer = (basket: BasketProductType[], action: BasketFullAct
     }
 }
 
-export const AddIntoBasketActionCreator = (buyProduct: BasketProductType) => {
-   return {type:ADD_INTO_BASKET, buyProduct: buyProduct} as AddIntoBasketActionType
+export const AddIntoBasketActionCreator = (buyProduct: BasketProductType): AddIntoBasketActionType => {
+   return {type:ADD_INTO_BASKET, buyProduct: buyProduct}
 }
-export const RemoveAllFromBasketActionCreator = () => {
-    return {type: REMOVE_ALL_FROM_BASKET} as RemoveAllFromBasketActionType
+export const RemoveAllFromBasketActionCreator = (): RemoveAllFromBasketActionType => {
+    return {type: REMOVE_ALL_FROM_BASKET}
 }
-export const ChangeCountItemToBuyActionCreator = (productID: string, newCount: number) => {
-    return {type: CHANGE_COUNT_ITEM_TO_BUY, productID: productID, newCount: newCount} as ChangeCountItemToBuyActionType
+export const ChangeCountItemToBuyActionCreator = (productID: string, newCount: number): ChangeCountItemToBuyActionType => {
+    return {type: CHANGE_COUNT_ITEM_TO_BUY, productID: productID, newCount: newCount}
 }
-export const RemoveItemFromBasketActionCreator = (productID: string) => {
-    return {type: REMOVE_ONE_ITEM_FROM_BASKET, productID: productID} as RemoveItemFromBasketActionType
+export const RemoveItemFromBasketActionCreator = (productID: string): RemoveItemFromBasketActionType => {
+    return {type: REMOVE_ONE_ITEM_FROM_BASKET, productID: productID}
 }
-export const AddIntoBasketAllAction = (buyProducts: BasketProductType[]) => {
-    return {type: ADD_INTO_BASKET_ALL_ITEMS, buyProducts: buyProducts} as AddIntoBasketAllActionType
+export const AddIntoBasketAllAction = (buyProducts: BasketProductType[]): AddIntoBasketAllActionType => {
+    return {type: ADD_INTO_BASKET_ALL_ITEMS, buyProducts: buyProducts}
 }

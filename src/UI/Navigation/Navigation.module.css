@@ -1,13 +1,22 @@
-.NavigationContainer{
-    background-color: #161616;
+.NavigationContainer {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    color: whitesmoke;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: #212121;
 }
-.navLink{
+
+.navLink {
     width: 100%;
-    height: 10%;
-    margin: 10px;
+    margin: 5px 0;
+}
+.navLink button{
+    width: 100%;
+}
+.filterMenu{
+    display: flex;
+}
+.searchMenu{
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
 }

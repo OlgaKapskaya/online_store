@@ -1,16 +1,16 @@
 import React from "react";
 import s from './ShopContent.module.css'
 import {ProductCard} from "./ProductCard/ProductCard";
-import {BasketProductType, StateType} from "../../BLL/types";
+import {BasketProductType, ProductDataType, StateType} from "../../BLL/types";
 
 type ShopContentPropsType = {
-    data: StateType
+    data: ProductDataType[]
     setInBasket: (buyProduct: BasketProductType) => void
 }
 export const ShopContent = (props: ShopContentPropsType) => {
     return (
         <div className={s.contentContainer}>
-            {props.data.productData.map( elem => {
+            {props.data.map( elem => {
                 return (
                     <ProductCard product={elem} key={elem.productID} setInBasket={props.setInBasket}/>
                 )
