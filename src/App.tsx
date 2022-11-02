@@ -30,9 +30,10 @@ function App() {
     useEffect(() => {
         localStorage.setItem('inBasket', JSON.stringify(inBasket))
     }, [inBasket])
-    const setInBasketHandler = (buyProduct: BasketProductType) => {
-        let onBasket = inBasket.find( item => item.productID === buyProduct.productID)
+    const setInBasket = (buyProduct: BasketProductType) => {
+        let onBasket = !!inBasket.find( item => item.productID === buyProduct.productID)
         if (!onBasket) basketDispatch(AddIntoBasketActionCreator(buyProduct))
+
     }
     const clearBasket = () => {
         localStorage.removeItem('inBasket')
@@ -64,7 +65,9 @@ function App() {
             <Navigation categories={state.categoriesData}
                         setFilterProductData={setFilterProductData}/>
             <div className={'content'}>
-                <ShopContent data={filteredProductData} setInBasket={setInBasketHandler}/>
+                <ShopContent data={filteredProductData}
+                             basketItems={inBasket}
+                             setInBasket={setInBasket}/>
             </div>
         </div>
     );

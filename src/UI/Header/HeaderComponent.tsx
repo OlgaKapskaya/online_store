@@ -37,6 +37,7 @@ export const HeaderComponent = (props: HeaderComponentProps) => {
             <div className={s.basketContainer}>
                 <IconButton onClick={onClickBasketHandler}>
                     <Badge badgeContent={props.basketProduct.length} color="secondary"
+                           overlap="rectangular"
                            invisible={props.basketProduct.length < 1} variant={'standard'}>
                         <ShoppingBasket color={'primary'}/>
                     </Badge>
@@ -62,7 +63,8 @@ export const HeaderComponent = (props: HeaderComponentProps) => {
                                     variant={'contained'}
                                     disabled={props.basketProduct.length <= 0}>Оформить заказ</Button>
                         </div>
-                        {props.basketProduct.map(elem => <BasketItem basketItem={elem}
+                        {props.basketProduct.map(elem => <BasketItem key={elem.productID}
+                                                                     basketItem={elem}
                                                                      onChangeCountItemToBuy={props.onChangeCountItemToBuy}
                                                                      onRemoveItemFromBasket={props.onRemoveItemFromBasket}/>)}
 

@@ -18,12 +18,12 @@ export const Navigation = (props: NavigationPropsType) => {
                         onClick={() => props.setFilterProductData('all')}>
                         All</Button>
                 </div>
-                {props.categories.map(elem => {
+                {props.categories.map((elem, index) => {
                     const onClickFilterButton = () => {
                         props.setFilterProductData(elem.type)
                     }
                     return (
-                        <div className={s.navLink}>
+                        <div className={s.navLink} key={index}>
                             <Button
                                 color={'primary'}
                                 variant={'contained'}
