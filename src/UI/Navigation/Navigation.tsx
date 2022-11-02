@@ -2,10 +2,12 @@ import React from "react";
 import s from './Navigation.module.css'
 import {CategoriesType} from "../../BLL/types";
 import {Button} from "@material-ui/core";
+import {SearchMenu} from "./SearchMenu/SearchMenu";
 
 type NavigationPropsType = {
     categories: CategoriesType[]
     setFilterProductData: (filter: string) => void
+    onSortedProductData: (sortInfo: string) => void
 }
 export const Navigation = (props: NavigationPropsType) => {
     return (
@@ -35,9 +37,7 @@ export const Navigation = (props: NavigationPropsType) => {
             </div>
 
             <div className={s.searchMenu}>
-                {/*<span>menu poisks</span>*/}
-                {/*<span>menu poisks</span>*/}
-                {/*<span>menu poisks</span>*/}
+                <SearchMenu onSortedProductData={props.onSortedProductData}/>
             </div>
         </div>
     )

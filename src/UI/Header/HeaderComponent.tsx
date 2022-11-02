@@ -10,6 +10,7 @@ type HeaderComponentProps = {
     clearBasket: () => void
     onChangeCountItemToBuy: (productID: string, newCount: number) => void
     onRemoveItemFromBasket: (productID: string) => void
+
 }
 export const HeaderComponent = (props: HeaderComponentProps) => {
     const [isVisible, setIsVisible] = useState(false)
@@ -35,6 +36,7 @@ export const HeaderComponent = (props: HeaderComponentProps) => {
 
             </div>
             <div className={s.basketContainer}>
+                <span><b>{totalPrice} BYN </b></span>
                 <IconButton onClick={onClickBasketHandler}>
                     <Badge badgeContent={props.basketProduct.length} color="secondary"
                            overlap="rectangular"

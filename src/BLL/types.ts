@@ -11,7 +11,6 @@ export type ProductDataType = {
     productPrice: number
     productCount: number
     productCategories: CategoriesType
-
 }
 //export type CategoriesType = 'Mac' | 'iPad' | 'iPhone' | 'Watch' |  'AirPods' | 'Аксессуары'
 export type CategoriesType = {
@@ -27,4 +26,8 @@ export type BasketProductType = {
     productArticle: string
     productPrice: number
     productCountToBuy: number
+}
+export type OptionsSelectType = {
+    id: string
+    value: string
 }

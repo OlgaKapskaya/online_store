@@ -11,7 +11,7 @@ import {
     basketReducer, ChangeCountItemToBuyActionCreator,
     RemoveAllFromBasketActionCreator, RemoveItemFromBasketActionCreator
 } from "./BLL/reducers/basketReducer";
-import {productDataReducer} from "./BLL/reducers/productDataReducer";
+import {productDataReducer, SortedDataAC} from "./BLL/reducers/productDataReducer";
 
 function App() {
     const [filter, setFilter] = useState('all')
@@ -46,15 +46,20 @@ function App() {
         basketDispatch(RemoveItemFromBasketActionCreator(productID))
     }
 
+    //filter productData
+    let filteredProductData = productData
+    if (filter === 'all') filteredProductData = productData
+    else  filteredProductData = productData.filter(elem => elem.productCategories.type === filter)
+
+
     //productData
     const setFilterProductData = (filter: string) => {
         setFilter(filter)
     }
+    const onSortedProductData = (sortInfo: string) => {
+        productDispatch(SortedDataAC(sortInfo))
+    }
 
-    //filter postData
-    let filteredProductData = productData
-    if (filter === 'all') filteredProductData = productData
-    else filteredProductData = productData.filter(elem => elem.productCategories.type === filter)
 
     return (
         <div className="App">
@@ -63,7 +68,8 @@ function App() {
                              onChangeCountItemToBuy={onChangeCountItemToBuy}
                              onRemoveItemFromBasket={onRemoveItemFromBasket}/>
             <Navigation categories={state.categoriesData}
-                        setFilterProductData={setFilterProductData}/>
+                        setFilterProductData={setFilterProductData}
+                        onSortedProductData={onSortedProductData}/>
             <div className={'content'}>
                 <ShopContent data={filteredProductData}
                              basketItems={inBasket}
