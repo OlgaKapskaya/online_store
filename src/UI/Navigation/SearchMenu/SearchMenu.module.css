@@ -5,3 +5,10 @@
     margin: 10px;
     background-color: whitesmoke;
 }
+.selectContainer{
+    display: flex;
+    align-items: center;
+}
+.selectContainer span{
+   margin-right: 10px;
+}

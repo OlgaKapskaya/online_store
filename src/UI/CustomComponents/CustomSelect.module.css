@@ -1,0 +1,49 @@
+.container {
+    cursor: pointer;
+    min-width: 300px;
+    width: max-content;
+}
+
+.select {
+    position: relative;
+    background: whitesmoke;
+    border: 1px solid #C2C2C2;
+    border-radius: 5px;
+    padding: 0 10px 0 10px;
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.imgUp{
+    rotate: 180deg;
+    transition: 0.10s;
+}
+.imgDown{
+    rotate: 0deg;
+    transition: 0.10s;
+}
+.optionsContainer{
+    position: absolute;
+    width: 300px;
+}
+
+.options {
+    cursor: pointer;
+    background: whitesmoke;
+    border: 1px solid #C2C2C2;
+    border-radius: 2px;
+    padding-left: 10px;
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1px;
+}
+
+.options.selected{
+    background: #ffa726;
+    color: #FFFFFF;
+}
