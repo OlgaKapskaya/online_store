@@ -6,6 +6,7 @@ import MacBook from '../img/MacBook.jpeg'
 import Case from '../img/case.jpeg'
 import TV from  '../img/TV.png'
 import Band from '../img/WatchBand.png'
+import pods from '../img/airPods.webp'
 
 import {StateType} from "./types";
 
@@ -19,7 +20,8 @@ export const state: StateType = {
         { productID: 'b120c5f5-5a97-11ed-90f4-532a5dca7d1c', productName: 'MacBook', productDescription: 'bla-bla-bla',productPhoto:MacBook, productPrice: 2700, productCount: 10, productCategories: {type: "MacBook"}, productArticle: 'MK193RU/A'},
         { productID: 'b120c5f6-5a97-11ed-90f4-532a5dca7d1c', productName: 'Case', productDescription: 'bla-bla-bla', productPhoto: Case, productPrice: 30, productCategories: {type: "Аксессуары"}, productCount:100, productArticle: 'MK193RU/CASE'},
         { productID: 'b120c5f7-5a97-11ed-90f4-532a5dca7d1c', productName: 'Apple TV', productDescription: 'bla-bla-bla',productPhoto:TV, productPrice: 1500, productCount: 11, productCategories: {type: "TV"}, productArticle: 'MK193RU/TV'},
-        { productID: 'b120c5f8-5a97-11ed-90f4-532a5dca7d1c', productName: 'Apple Watch Band', productDescription: 'bla-bla-bla', productPhoto: Band, productPrice: 50, productCategories: {type: "Аксессуары"}, productCount:100, productArticle: 'MK193RU/BAND'}
+        { productID: 'b120c5f8-5a97-11ed-90f4-532a5dca7d1c', productName: 'Apple Watch Band', productDescription: 'bla-bla-bla', productPhoto: Band, productPrice: 50, productCategories: {type: "Аксессуары"}, productCount:100, productArticle: 'MK193RU/BAND'},
+        { productID: 'b120c5f9-5a97-11ed-90f4-532a5dca7d1c', productName: 'AirPods', productDescription: 'bla-bla-bla', productPhoto: pods, productPrice: 870, productCategories: {type: 'AirPods'}, productCount: 45, productArticle: 'MK1HYRU/PODS'}
     ],
     categoriesData: [
         { type: 'Mac'},

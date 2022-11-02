@@ -1,6 +1,5 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {useState} from "react";
 import s from './SearchMenu.module.css'
-import {TextField} from "@material-ui/core";
 import {OptionsSelectType} from "../../../BLL/types";
 import {CustomSelect} from "../../CustomComponents/CustomSelect";
 
@@ -23,16 +22,13 @@ export const SearchMenu = (props: SearchMenuPropsType) => {
     }
     return (
         <div className={s.MenuContainer}>
-                <TextField type={'text'}
-                           label={'Введите название'}
-                           size={'small'}
-                           variant={'outlined'}/>
+                {/*<TextField type={'text'}*/}
+                {/*           label={'Введите название'}*/}
+                {/*           size={'small'}*/}
+                {/*           variant={'outlined'}/>*/}
             <div className={s.selectContainer}>
                 <span> Сортировать по: </span>
                 <CustomSelect value={value} options={optionsToSelect} onChange={onChangeSelectHandler}/>
-                {/*<select onChange={onChangeSelectHandler}>*/}
-                {/*    {optionsToSelect.map( elem => <option value={elem.id} key={elem.id}>{elem.value}</option>)}*/}
-                {/*</select>*/}
             </div>
 
         </div>

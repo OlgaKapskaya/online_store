@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import s from './HeaderComponent.module.css'
-import {Badge, Button, Drawer, IconButton} from "@material-ui/core";
+import {Badge, IconButton} from "@material-ui/core";
 import {QueryBuilderOutlined, ShoppingBasket} from "@material-ui/icons";
 import {BasketProductType} from "../../BLL/types";
-import {BasketItem} from "./BasketItem/BasketItem";
+import {Basket} from "./Basket/Basket";
 
 type HeaderComponentProps = {
     basketProduct: BasketProductType[]
@@ -44,33 +44,13 @@ export const HeaderComponent = (props: HeaderComponentProps) => {
                         <ShoppingBasket color={'primary'}/>
                     </Badge>
                 </IconButton>
-                {isVisible &&
-                    <Drawer anchor={'right'}
-                            open={isVisible}
-                            onClose={() => setIsVisible(false)}>
-                        <div className={s.totalPrice}>
-                            {props.basketProduct.length > 0 &&
-                                <div>
-                                    <div>Всего <b>{props.basketProduct.length}</b> наименований </div>
-                                    <div>общей стоимостью: <b>{totalPrice} BYN</b></div>
-                                </div>}
-                            {(props.basketProduct.length <= 0) && <span>Ваша корзина пуста</span>}
-                        </div>
-                        <div className={s.buttonGroup}>
-                            <Button color={'primary'}
-                                    variant={'contained'}
-                                    disabled={props.basketProduct.length <= 0}
-                                    onClick={props.clearBasket}>Очистить корзину</Button>
-                            <Button color={'secondary'}
-                                    variant={'contained'}
-                                    disabled={props.basketProduct.length <= 0}>Оформить заказ</Button>
-                        </div>
-                        {props.basketProduct.map(elem => <BasketItem key={elem.productID}
-                                                                     basketItem={elem}
-                                                                     onChangeCountItemToBuy={props.onChangeCountItemToBuy}
-                                                                     onRemoveItemFromBasket={props.onRemoveItemFromBasket}/>)}
-
-                    </Drawer>}
+                {isVisible && <Basket basketProduct={props.basketProduct}
+                                      totalPrice={totalPrice}
+                                      isVisible={isVisible}
+                                      clearBasket={props.clearBasket}
+                                      onChangeCountItemToBuy={props.onChangeCountItemToBuy}
+                                      onRemoveItemFromBasket={props.onRemoveItemFromBasket}
+                                      setIsVisible={setIsVisible}/>}
             </div>
 
         </div>

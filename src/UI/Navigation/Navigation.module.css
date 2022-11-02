@@ -1,3 +1,9 @@
+@media screen and (max-width: 768px){
+    .filterMenu{
+        display: flex;
+        flex-direction: column;
+    }
+}
 .NavigationContainer {
     display: flex;
     flex-direction: column;

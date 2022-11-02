@@ -52,7 +52,7 @@ export const CustomSelect = (props: SelectProps) => {
                  tabIndex={1}
                  onKeyUp={onKeyUpItemHandler}
             >
-                <h5>{props.value}</h5>
+                <span>{props.value}</span>
                 <img src={img} className={isVisible ? s.imgUp : s.imgDown} alt={'arrow'}/>
             </div>
             <div className={s.optionsContainer}>
