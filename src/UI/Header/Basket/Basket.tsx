@@ -12,7 +12,7 @@ type BasketProsType = {
     clearBasket: () => void
     onChangeCountItemToBuy: (productID: string, newCount: number) => void
     onRemoveItemFromBasket: (productID: string) => void
-    setIsVisible: (isvisible: boolean) => void
+    setIsVisible: (isVisible: boolean) => void
 }
 export const Basket = (props: BasketProsType) => {
     return (

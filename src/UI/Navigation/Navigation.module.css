@@ -1,7 +1,12 @@
 @media screen and (max-width: 768px){
-    .filterMenu{
-        display: flex;
-        flex-direction: column;
+    .filterMenuContainer{
+        display: none;
+    }
+
+}
+@media screen and (min-width: 769px){
+    .filterMenuContainerMobile{
+        display: none;
     }
 }
 .NavigationContainer {
@@ -14,6 +19,13 @@
 .navLink {
     width: 100%;
     margin: 5px 0;
+}
+.navLinkMobile{
+    display: flex;
+    margin: 5px;
+}
+.navLinkMobile button{
+    margin: 5px;
 }
 .navLink button{
     width: 100%;

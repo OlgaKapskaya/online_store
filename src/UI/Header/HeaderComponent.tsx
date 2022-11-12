@@ -26,14 +26,20 @@ export const HeaderComponent = (props: HeaderComponentProps) => {
                      className={s.logo}/>
                 <span>APPLE SHOP</span>
             </div>
-
-            <div className={s.workTimeContainer}>
-                <QueryBuilderOutlined/>
-                <div className={s.workTime}>
-                    <div>08:30 - 22:00 (пн - пт)</div>
-                    <div>10:00 - 19:00 (сб - вс)</div>
+            {/*<div className={s.navigateButton}>*/}
+            {/*    <Button size={'small'} variant={'text'} > Каталог </Button>*/}
+            {/*    <Button size={'small'} variant={'text'}> Адреса магазинов </Button>*/}
+            {/*    <Button size={'small'} variant={'text'}> Оплата и доставка </Button>*/}
+            {/*    <Button size={'small'} variant={'text'}> Сервисный центр </Button>*/}
+            {/*</div>*/}
+            <div className={s.workTimeContainer_ALL}>
+                <div className={s.workTimeContainer}>
+                    <QueryBuilderOutlined/>
+                    <div className={s.workTime}>
+                        <div>08:30 - 22:00 (пн - пт)</div>
+                        <div>10:00 - 19:00 (сб - вс)</div>
+                    </div>
                 </div>
-
             </div>
             <div className={s.basketContainer}>
                 <span><b>{totalPrice} BYN </b></span>
