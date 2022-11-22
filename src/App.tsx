@@ -11,10 +11,11 @@ import {
     basketReducer, ChangeCountItemToBuyActionCreator,
     RemoveAllFromBasketActionCreator, RemoveItemFromBasketActionCreator
 } from "./BLL/reducers/basketReducer";
-import {getDataAC, sortedDataAC} from "./BLL/reducers/productDataReducer";
+import {getDataAC, setFetchingAC, sortedDataAC} from "./BLL/reducers/productDataReducer";
 import {catalogAPI} from "./API/api";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./BLL/store";
+import {Preloader} from "./UI/CustomComponents/Preloader/Preloader";
 
 function App() {
     const [filter, setFilter] = useState('all')
@@ -22,13 +23,15 @@ function App() {
 
     const productData = useSelector<AppRootStateType, ProductDataPageType>(state => state.productData)
     const productDispatch = useDispatch()
-
+    // console.log(JSON.stringify(productData.data))
 
     useEffect(() => {
+        productDispatch(setFetchingAC(true))
         catalogAPI.getCatalog().then(response => {
             productDispatch(getDataAC(response))
+            productDispatch(setFetchingAC(false))
         })
-    },[productDispatch])
+    },[])
 
     //basket
     useEffect(() => {
@@ -83,9 +86,11 @@ function App() {
                         setFilterProductData={setFilterProductData}
                         onSortedProductData={onSortedProductData}/>
             <div className={'content'}>
-                <ShopContent data={filteredProductData}
+                {productData.isFetching
+                    ? <Preloader/>
+                    : <ShopContent data={filteredProductData}
                              basketItems={inBasket}
-                             setInBasket={setInBasket}/>
+                             setInBasket={setInBasket}/>}
             </div>
         </div>
     );

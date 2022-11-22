@@ -1,9 +1,10 @@
 import {CategoriesType, ProductDataPageType} from "../types";
 
-type ActionType = SortedDataAT | GetProductData
+type ActionType = SortedDataAT | GetProductDataAT | SetFetchingAT
 
 type SortedDataAT = ReturnType<typeof sortedDataAC>
-type GetProductData = ReturnType<typeof getDataAC>
+type GetProductDataAT = ReturnType<typeof getDataAC>
+type SetFetchingAT = ReturnType<typeof setFetchingAC>
 
 const initState: ProductDataPageType = {
     data: [],
@@ -45,6 +46,8 @@ export const productDataReducer = (state = initState, action: ActionType): Produ
        return state
         case 'GET_PRODUCT_DATA':
             return {...state, data: [...state.data, ...action.data]}
+        case 'SET_PRODUCT_FETCHING':
+            return {...state, isFetching: action.isFetching}
         default: return state
     }
 }
@@ -60,3 +63,4 @@ export const getDataAC = (data: [{
     productCount: number
     productCategories: CategoriesType
 }]) => ({type: 'GET_PRODUCT_DATA', data} as const)
+export const setFetchingAC = (isFetching: boolean) => ({type: 'SET_PRODUCT_FETCHING', isFetching} as const)
