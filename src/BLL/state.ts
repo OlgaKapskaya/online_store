@@ -1,7 +1,3 @@
-import iPhone from '../img/iPhone.jpeg'
-import iPad from '../img/iPad.jpeg'
-import Watch from '../img/Watch.jpeg'
-import MacBook from '../img/MacBook.jpeg'
 import {StateType} from "./types";
 
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Drawer, IconButton, Menu, MenuItem} from "@material-ui/core";
+import {Button, Drawer, Menu, MenuItem} from "@material-ui/core";
 import {CategoriesType} from "../../../BLL/types";
 import s from "../MenuSidebar/MenuSidebar.module.css";
 import {Close} from "@material-ui/icons";

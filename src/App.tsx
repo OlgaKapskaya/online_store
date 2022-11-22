@@ -28,7 +28,8 @@ function App() {
         catalogAPI.getCatalog().then(response => {
             productDispatch(getDataAC(response))
         })
-    },[])
+    },[productDispatch])
+
     //basket
     useEffect(() => {
         let local_storage = localStorage.getItem('inBasket')
