@@ -4,20 +4,31 @@ import {HeaderComponent} from "./UI/Header/HeaderComponent";
 import {Navigation} from "./UI/Navigation/Navigation";
 import {ShopContent} from "./UI/ShopContent/ShopContent";
 import {state} from "./BLL/state";
-import {BasketProductType} from "./BLL/types";
+import {BasketProductType, ProductDataPageType} from "./BLL/types";
 import {
     AddIntoBasketActionCreator,
     AddIntoBasketAllAction,
     basketReducer, ChangeCountItemToBuyActionCreator,
     RemoveAllFromBasketActionCreator, RemoveItemFromBasketActionCreator
 } from "./BLL/reducers/basketReducer";
-import {productDataReducer, SortedDataAC} from "./BLL/reducers/productDataReducer";
+import {getDataAC, sortedDataAC} from "./BLL/reducers/productDataReducer";
+import {catalogAPI} from "./API/api";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "./BLL/store";
 
 function App() {
     const [filter, setFilter] = useState('all')
     const [inBasket, basketDispatch] = useReducer(basketReducer, [])
-    const [productData, productDispatch] = useReducer(productDataReducer, state.productData)
 
+    const productData = useSelector<AppRootStateType, ProductDataPageType>(state => state.productData)
+    const productDispatch = useDispatch()
+
+
+    useEffect(() => {
+        catalogAPI.getCatalog().then(response => {
+            productDispatch(getDataAC(response))
+        })
+    },[])
     //basket
     useEffect(() => {
         let local_storage = localStorage.getItem('inBasket')
@@ -47,9 +58,9 @@ function App() {
     }
 
     //filter productData
-    let filteredProductData = productData
-    if (filter === 'all') filteredProductData = productData
-    else  filteredProductData = productData.filter(elem => elem.productCategories.type === filter)
+    let filteredProductData = productData.data
+    if (filter === 'all') filteredProductData = productData.data
+    else  filteredProductData = productData.data.filter(elem => elem.productCategories.type === filter)
 
 
     //productData
@@ -57,7 +68,7 @@ function App() {
         setFilter(filter)
     }
     const onSortedProductData = (sortInfo: string) => {
-        productDispatch(SortedDataAC(sortInfo))
+        productDispatch(sortedDataAC(sortInfo))
     }
 
 

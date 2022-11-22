@@ -1,7 +1,7 @@
 import React from "react";
 import s from './ShopContent.module.css'
 import {ProductCard} from "./ProductCard/ProductCard";
-import {BasketProductType, ProductDataType, StateType} from "../../BLL/types";
+import {BasketProductType, ProductDataType} from "../../BLL/types";
 
 type ShopContentPropsType = {
     data: ProductDataType[]

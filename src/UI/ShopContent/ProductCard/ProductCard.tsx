@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import s from './ProductCard.module.css'
 import {BasketProductType, ProductDataType} from "../../../BLL/types";
 import {Button} from "@material-ui/core";

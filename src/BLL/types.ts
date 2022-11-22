@@ -2,6 +2,12 @@ export type StateType = {
     productData: ProductDataType[]
     categoriesData: CategoriesType[]
 }
+
+export type ProductDataPageType = {
+    data: ProductDataType[]
+    isFetching: boolean
+}
+
 export type ProductDataType = {
     productID: string
     productName: string
@@ -12,7 +18,7 @@ export type ProductDataType = {
     productCount: number
     productCategories: CategoriesType
 }
-//export type CategoriesType = 'Mac' | 'iPad' | 'iPhone' | 'Watch' |  'AirPods' | 'Аксессуары'
+
 export type CategoriesType = {
     type: string
     model?: {
