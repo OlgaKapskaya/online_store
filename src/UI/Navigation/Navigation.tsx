@@ -21,9 +21,9 @@ export const Navigation = (props: NavigationPropsType) => {
                 <div className={s.filterMenuMobile}>
                     <div className={s.filterMenuMobile}>
                         <div className={s.navLinkMobile}>
-                            <IconButton color="inherit" aria-label="menu" size={'small'}
+                            <IconButton color='inherit' aria-label='menu' size='small'
                                         onClick={() => setOnOpen(true)}>
-                                <Menu color={'secondary'}/>
+                                <Menu color='secondary'/>
                             </IconButton>
                         </div>
                     </div>
@@ -38,8 +38,8 @@ export const Navigation = (props: NavigationPropsType) => {
                 <div className={s.filterMenu}>
                     <div className={s.navLink}>
                         <Button
-                            color={'primary'}
-                            variant={'contained'}
+                            color='primary'
+                            variant='contained'
                             onClick={() => props.setFilterProductData('all')}>
                             All</Button>
                     </div>
@@ -50,8 +50,8 @@ export const Navigation = (props: NavigationPropsType) => {
                         return (
                             <div className={s.navLink} key={index}>
                                 <Button
-                                    color={'primary'}
-                                    variant={'contained'}
+                                    color='primary'
+                                    variant='contained'
                                     onClick={onClickFilterButton}>
                                     {elem.type}</Button>
                             </div>)

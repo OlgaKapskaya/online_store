@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer, useState} from 'react';
+import React, {useCallback, useEffect, useReducer, useState} from 'react';
 import './App.css';
 import {HeaderComponent} from "./UI/Header/HeaderComponent";
 import {Navigation} from "./UI/Navigation/Navigation";
@@ -32,7 +32,7 @@ function App() {
             productDispatch(getDataAC(response))
             productDispatch(setFetchingAC(false))
         })
-    },[])
+    },[productDispatch])
 
     //basket
     useEffect(() => {
@@ -47,20 +47,20 @@ function App() {
         localStorage.setItem('inBasket', JSON.stringify(inBasket))
     }, [inBasket])
 
-    const setInBasket = (buyProduct: BasketProductType) => {
+    const setInBasket = useCallback((buyProduct: BasketProductType) => {
         let onBasket = !!inBasket.find( item => item.productID === buyProduct.productID)
         if (!onBasket) basketDispatch(AddIntoBasketActionCreator(buyProduct))
-    }
-    const clearBasket = () => {
+    },[inBasket])
+    const clearBasket = useCallback(() => {
         localStorage.removeItem('inBasket')
         basketDispatch(RemoveAllFromBasketActionCreator())
-    }
-    const onChangeCountItemToBuy = (productID: string, newCount: number) => {
+    },[basketDispatch])
+    const onChangeCountItemToBuy = useCallback((productID: string, newCount: number) => {
         basketDispatch(ChangeCountItemToBuyActionCreator(productID, newCount))
-    }
-    const onRemoveItemFromBasket = (productID: string) => {
+    },[basketDispatch])
+    const onRemoveItemFromBasket = useCallback((productID: string) => {
         basketDispatch(RemoveItemFromBasketActionCreator(productID))
-    }
+    },[basketDispatch])
 
     //filter productData
     let filteredProductData = productData.data
@@ -75,14 +75,14 @@ function App() {
 
 
     return (
-        <div className="App">
+        <div className='App'>
             <HeaderComponent basketProduct={inBasket}
                              clearBasket={clearBasket}
                              onChangeCountItemToBuy={onChangeCountItemToBuy}
                              onRemoveItemFromBasket={onRemoveItemFromBasket}/>
             <Navigation categories={state.categoriesData}
                         setFilterProductData={setFilterProductData}/>
-            <div className={'content'}>
+            <div className='content'>
                 {productData.isFetching
                     ? <Preloader/>
                     : <ShopContent data={filteredProductData}
