@@ -11,7 +11,7 @@ import {
     basketReducer, ChangeCountItemToBuyActionCreator,
     RemoveAllFromBasketActionCreator, RemoveItemFromBasketActionCreator
 } from "./BLL/reducers/basketReducer";
-import {getDataAC, setFetchingAC, sortedDataAC} from "./BLL/reducers/productDataReducer";
+import {getDataAC, setFetchingAC} from "./BLL/reducers/productDataReducer";
 import {catalogAPI} from "./API/api";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./BLL/store";
@@ -24,6 +24,7 @@ function App() {
     const productData = useSelector<AppRootStateType, ProductDataPageType>(state => state.productData)
     const productDispatch = useDispatch()
     // console.log(JSON.stringify(productData.data))
+
 
     useEffect(() => {
         productDispatch(setFetchingAC(true))
@@ -41,14 +42,14 @@ function App() {
             basketDispatch(AddIntoBasketAllAction(storage_get))
         }
 
-    }, [])
+    }, [productDispatch])
     useEffect(() => {
         localStorage.setItem('inBasket', JSON.stringify(inBasket))
     }, [inBasket])
+
     const setInBasket = (buyProduct: BasketProductType) => {
         let onBasket = !!inBasket.find( item => item.productID === buyProduct.productID)
         if (!onBasket) basketDispatch(AddIntoBasketActionCreator(buyProduct))
-
     }
     const clearBasket = () => {
         localStorage.removeItem('inBasket')
@@ -71,9 +72,6 @@ function App() {
     const setFilterProductData = (filter: string) => {
         setFilter(filter)
     }
-    const onSortedProductData = (sortInfo: string) => {
-        productDispatch(sortedDataAC(sortInfo))
-    }
 
 
     return (
@@ -83,8 +81,7 @@ function App() {
                              onChangeCountItemToBuy={onChangeCountItemToBuy}
                              onRemoveItemFromBasket={onRemoveItemFromBasket}/>
             <Navigation categories={state.categoriesData}
-                        setFilterProductData={setFilterProductData}
-                        onSortedProductData={onSortedProductData}/>
+                        setFilterProductData={setFilterProductData}/>
             <div className={'content'}>
                 {productData.isFetching
                     ? <Preloader/>

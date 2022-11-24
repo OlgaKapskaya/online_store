@@ -9,7 +9,6 @@ import {MenuSidebar} from "./MenuSidebar/MenuSidebar";
 type NavigationPropsType = {
     categories: CategoriesType[]
     setFilterProductData: (filter: string) => void
-    onSortedProductData: (sortInfo: string) => void
 }
 
 
@@ -62,7 +61,7 @@ export const Navigation = (props: NavigationPropsType) => {
             </div>
 
             <div className={s.searchMenu}>
-                <SearchMenu onSortedProductData={props.onSortedProductData}/>
+                <SearchMenu />
             </div>
         </div>
     )

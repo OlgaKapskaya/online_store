@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useMemo, useState} from "react";
 import s from './HeaderComponent.module.css'
 import {Badge, IconButton} from "@material-ui/core";
 import {QueryBuilderOutlined, ShoppingBasket} from "@material-ui/icons";
@@ -15,8 +15,9 @@ type HeaderComponentProps = {
 export const HeaderComponent = (props: HeaderComponentProps) => {
     const [isVisible, setIsVisible] = useState(false)
     const onClickBasketHandler = () => setIsVisible(true)
-    let totalPrice = props.basketProduct.reduce((sum, current) =>
-        sum + current.productPrice * current.productCountToBuy, 0)
+    let totalPrice = useMemo(() => props.basketProduct.reduce((sum, current) =>
+        sum + current.productPrice * current.productCountToBuy, 0), [props.basketProduct])
+
 
     return (
         <div className={s.HeaderContainer}>
