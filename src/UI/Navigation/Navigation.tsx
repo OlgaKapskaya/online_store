@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {memo, useState} from "react";
 import s from './Navigation.module.css'
 import {CategoriesType} from "../../BLL/types";
 import {Button, IconButton} from "@material-ui/core";
@@ -12,7 +12,7 @@ type NavigationPropsType = {
 }
 
 
-export const Navigation = (props: NavigationPropsType) => {
+export const Navigation = memo((props: NavigationPropsType) => {
     const [onOpen, setOnOpen] = useState<boolean>(false)
     return (
         <div className={s.NavigationContainer}>
@@ -65,4 +65,4 @@ export const Navigation = (props: NavigationPropsType) => {
             </div>
         </div>
     )
-}
+})

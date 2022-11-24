@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from "react";
+import React, {memo, useMemo, useState} from "react";
 import s from './HeaderComponent.module.css'
 import {Badge, IconButton} from "@material-ui/core";
 import {QueryBuilderOutlined, ShoppingBasket} from "@material-ui/icons";
@@ -12,7 +12,7 @@ type HeaderComponentProps = {
     onRemoveItemFromBasket: (productID: string) => void
 
 }
-export const HeaderComponent = (props: HeaderComponentProps) => {
+export const HeaderComponent = memo((props: HeaderComponentProps) => {
     const [isVisible, setIsVisible] = useState(false)
     const onClickBasketHandler = () => setIsVisible(true)
     let totalPrice = useMemo(() => props.basketProduct.reduce((sum, current) =>
@@ -62,4 +62,4 @@ export const HeaderComponent = (props: HeaderComponentProps) => {
 
         </div>
     )
-}
+})

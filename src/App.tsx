@@ -63,15 +63,15 @@ function App() {
     },[basketDispatch])
 
     //filter productData
-    let filteredProductData = productData.data
+    let filteredProductData
     if (filter === 'all') filteredProductData = productData.data
     else  filteredProductData = productData.data.filter(elem => elem.productCategories.type === filter)
 
 
     //productData
-    const setFilterProductData = (filter: string) => {
-        setFilter(filter)
-    }
+    const setFilterProductData = useCallback((newFilter: string) => {
+        setFilter(newFilter)
+    }, [filter])
 
 
     return (
