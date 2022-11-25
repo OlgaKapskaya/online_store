@@ -8,12 +8,11 @@ import {catalogAPI} from "../../../API/api";
 import {InputAdornment, TextField} from "@material-ui/core";
 import {Search} from "@material-ui/icons";
 
-type SearchMenuPropsType = {}
-export const SearchMenu = (props: SearchMenuPropsType) => {
+export const SearchMenu = () => {
     const [value, setValue] = useState('Без сортировки')
     const dispatch = useDispatch()
 
-    let optionsToSelect: OptionsSelectType[] = [
+    const optionsToSelect: OptionsSelectType[] = [
         {id: '1', value: 'Названию (от А до Я)'},
         {id: '2', value: 'Названию (от Я до А)'},
         {id: '3', value: 'Стоимости (сначала дешевые)'},

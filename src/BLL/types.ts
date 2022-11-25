@@ -6,6 +6,8 @@ export type StateType = {
 export type ProductDataPageType = {
     data: ProductDataType[]
     isFetching: boolean
+    currentPage: number
+    pageSize: number
 }
 
 export type ProductDataType = {

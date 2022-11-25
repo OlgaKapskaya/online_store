@@ -22,6 +22,9 @@ function App() {
     const [inBasket, basketDispatch] = useReducer(basketReducer, [])
 
     const productData = useSelector<AppRootStateType, ProductDataPageType>(state => state.productData)
+    // const currentPage = useSelector<AppRootStateType, number>(state => state.productData.currentPage)
+    // const pageSize = useSelector<AppRootStateType, number>(state => state.productData.pageSize)
+
     const productDispatch = useDispatch()
     // console.log(JSON.stringify(productData.data))
 
@@ -66,6 +69,7 @@ function App() {
     let filteredProductData
     if (filter === 'all') filteredProductData = productData.data
     else  filteredProductData = productData.data.filter(elem => elem.productCategories.type === filter)
+
 
 
     //productData

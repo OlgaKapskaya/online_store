@@ -5,15 +5,15 @@ const instance = axios.create({
 })
 export const catalogAPI = {
     getCatalog() {
-        return instance.get('catalog')
+        return instance.get(`catalog`)
             .then(response => response.data)
     },
     getSortedCatalog(sortData: string, sortType: string) {
-        return instance.get(`catalog/?sortBy=${sortData}&order=${sortType}`)
+        return instance.get(`catalog?sortBy=${sortData}&order=${sortType}`)
             .then(response => response.data)
     },
     getSearchCatalog(searchTitle: string) {
-        return instance.get(`catalog/?search=${searchTitle}`)
+        return instance.get(`catalog?search=${searchTitle}`)
             .then(response => response.data)
     },
 }

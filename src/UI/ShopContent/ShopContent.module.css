@@ -1,7 +1,13 @@
 
 .contentContainer{
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     width: 70%;
+}
+.productCardsContainer{
+    display: flex;
+    justify-content: center;
     flex-wrap: wrap;
 }

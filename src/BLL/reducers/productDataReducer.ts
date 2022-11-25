@@ -1,14 +1,17 @@
 import {CategoriesType, ProductDataPageType} from "../types";
 
-type ActionType = SortedDataAT | GetProductDataAT | SetFetchingAT
+type ActionType = SortedDataAT | GetProductDataAT | SetFetchingAT | ChangeCurrentPageAT
 
 type SortedDataAT = ReturnType<typeof sortedDataAC>
 type GetProductDataAT = ReturnType<typeof getDataAC>
 type SetFetchingAT = ReturnType<typeof setFetchingAC>
+type ChangeCurrentPageAT = ReturnType<typeof changeCurrentPageAC>
 
 const initState: ProductDataPageType = {
     data: [],
-    isFetching: false
+    isFetching: false,
+    currentPage: 1,
+    pageSize: 9
 }
 
 
@@ -18,7 +21,10 @@ export const productDataReducer = (state = initState, action: ActionType): Produ
             return {...state, data: [...action.data]}
         case 'SET_PRODUCT_FETCHING':
             return {...state, isFetching: action.isFetching}
-        default: return state
+        case 'CHANGE_CURRENT_PAGE':
+            return {...state, currentPage: action.currentPage}
+        default:
+            return state
     }
 }
 
@@ -34,3 +40,13 @@ export const getDataAC = (data: [{
     productCategories: CategoriesType
 }]) => ({type: 'GET_PRODUCT_DATA', data} as const)
 export const setFetchingAC = (isFetching: boolean) => ({type: 'SET_PRODUCT_FETCHING', isFetching} as const)
+export const changeCurrentPageAC = (currentPage: number) => ({type: 'CHANGE_CURRENT_PAGE', currentPage} as const)
+
+
+// export const getSortedCatalogTC = (sortData: string, sortType: string) => (dispatch: Dispatch<ActionType>) => {
+//     dispatch(setFetchingAC(true))
+//     catalogAPI.getSortedCatalog(sortData, sortType).then(response => {
+//         dispatch(getDataAC(response))
+//         dispatch(setFetchingAC(false))
+//     }
+// }
