@@ -1,15 +1,22 @@
-.MenuContainer{
+.MenuContainer {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin: 10px;
     background-color: whitesmoke;
 }
-.selectContainer{
+
+.selectContainer {
     display: flex;
     align-items: center;
 }
-.selectContainer span{
-   margin-right: 10px;
+
+.selectContainer span {
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.searchField input {
+    font-family: Montserrat;
     font-size: 14px;
 }

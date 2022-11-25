@@ -9,12 +9,12 @@
     background: whitesmoke;
     border: 1px solid #C2C2C2;
     border-radius: 5px;
-    padding: 0 10px 0 10px;
+    padding: 3px 10px;
     height: 32px;
     display: flex;
     justify-content: space-between;
+    align-self: center;
     align-items: center;
-    margin-bottom: 5px;
 }
 .imgUp{
     rotate: 180deg;

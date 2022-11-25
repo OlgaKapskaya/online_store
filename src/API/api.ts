@@ -11,5 +11,9 @@ export const catalogAPI = {
     getSortedCatalog(sortData: string, sortType: string) {
         return instance.get(`catalog/?sortBy=${sortData}&order=${sortType}`)
             .then(response => response.data)
-    }
+    },
+    getSearchCatalog(searchTitle: string) {
+        return instance.get(`catalog/?search=${searchTitle}`)
+            .then(response => response.data)
+    },
 }
