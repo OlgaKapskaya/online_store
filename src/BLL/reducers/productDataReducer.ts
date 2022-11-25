@@ -1,8 +1,12 @@
 import {CategoriesType, ProductDataPageType} from "../types";
+import {catalogAPI} from "../../API/api";
+import {Dispatch} from "redux"
+import {AppRootStateType} from "../store";
+import {ThunkAction} from 'redux-thunk';
 
-type ActionType = SortedDataAT | GetProductDataAT | SetFetchingAT | ChangeCurrentPageAT
+type ActionType = GetProductDataAT | SetFetchingAT | ChangeCurrentPageAT
 
-type SortedDataAT = ReturnType<typeof sortedDataAC>
+
 type GetProductDataAT = ReturnType<typeof getDataAC>
 type SetFetchingAT = ReturnType<typeof setFetchingAC>
 type ChangeCurrentPageAT = ReturnType<typeof changeCurrentPageAC>
@@ -28,7 +32,7 @@ export const productDataReducer = (state = initState, action: ActionType): Produ
     }
 }
 
-export const sortedDataAC = (sortInfo: string) => ({type: 'GET_SORTED_DATA', sortInfo} as const)
+
 export const getDataAC = (data: [{
     productID: string
     productName: string
@@ -43,10 +47,22 @@ export const setFetchingAC = (isFetching: boolean) => ({type: 'SET_PRODUCT_FETCH
 export const changeCurrentPageAC = (currentPage: number) => ({type: 'CHANGE_CURRENT_PAGE', currentPage} as const)
 
 
-// export const getSortedCatalogTC = (sortData: string, sortType: string) => (dispatch: Dispatch<ActionType>) => {
-//     dispatch(setFetchingAC(true))
-//     catalogAPI.getSortedCatalog(sortData, sortType).then(response => {
-//         dispatch(getDataAC(response))
-//         dispatch(setFetchingAC(false))
-//     }
-// }
+export const getCatalogTC = (): ThunkAction<Promise<void>, AppRootStateType, unknown, ActionType> => {
+    return async (dispatch) => {
+        dispatch(setFetchingAC(true))
+        catalogAPI.getCatalog()
+            .then(response => {
+                dispatch(getDataAC(response))
+                dispatch(setFetchingAC(false))
+            })
+    }
+}
+
+export const getSortedCatalogTC = (sortData: string, sortType: string) => (dispatch: Dispatch<ActionType>) => {
+    dispatch(setFetchingAC(true))
+    catalogAPI.getSortedCatalog(sortData, sortType)
+        .then(response => {
+            dispatch(getDataAC(response))
+            dispatch(setFetchingAC(false))
+        })
+}

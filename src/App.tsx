@@ -11,10 +11,9 @@ import {
     basketReducer, ChangeCountItemToBuyActionCreator,
     RemoveAllFromBasketActionCreator, RemoveItemFromBasketActionCreator
 } from "./BLL/reducers/basketReducer";
-import {getDataAC, setFetchingAC} from "./BLL/reducers/productDataReducer";
-import {catalogAPI} from "./API/api";
-import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "./BLL/store";
+import {getCatalogTC} from "./BLL/reducers/productDataReducer";
+import {useSelector} from "react-redux";
+import {AppRootStateType, useAppDispatch} from "./BLL/store";
 import {Preloader} from "./UI/CustomComponents/Preloader/Preloader";
 
 function App() {
@@ -25,17 +24,14 @@ function App() {
     // const currentPage = useSelector<AppRootStateType, number>(state => state.productData.currentPage)
     // const pageSize = useSelector<AppRootStateType, number>(state => state.productData.pageSize)
 
-    const productDispatch = useDispatch()
+    const dispatch = useAppDispatch()
     // console.log(JSON.stringify(productData.data))
 
 
     useEffect(() => {
-        productDispatch(setFetchingAC(true))
-        catalogAPI.getCatalog().then(response => {
-            productDispatch(getDataAC(response))
-            productDispatch(setFetchingAC(false))
-        })
-    },[productDispatch])
+        // @ts-ignore
+        dispatch(getCatalogTC())
+    },[dispatch])
 
     //basket
     useEffect(() => {
@@ -45,7 +41,7 @@ function App() {
             basketDispatch(AddIntoBasketAllAction(storage_get))
         }
 
-    }, [productDispatch])
+    }, [basketDispatch])
     useEffect(() => {
         localStorage.setItem('inBasket', JSON.stringify(inBasket))
     }, [inBasket])
