@@ -20,18 +20,22 @@ function App() {
     const [filter, setFilter] = useState('all')
     const [inBasket, basketDispatch] = useReducer(basketReducer, [])
 
+
     const productData = useSelector<AppRootStateType, ProductDataPageType>(state => state.productData)
-    // const currentPage = useSelector<AppRootStateType, number>(state => state.productData.currentPage)
-    // const pageSize = useSelector<AppRootStateType, number>(state => state.productData.pageSize)
+    const currentPage = productData.currentPage
+    const sortData = productData.sortData
+    const sortType = productData.sortType
+    const searchTitle = productData.searchTitle
 
     const dispatch = useAppDispatch()
+
+    console.log(searchTitle)
     // console.log(JSON.stringify(productData.data))
 
 
     useEffect(() => {
-        // @ts-ignore
-        dispatch(getCatalogTC())
-    },[dispatch])
+        dispatch(getCatalogTC(currentPage, sortData, sortType, searchTitle))
+    },[currentPage, dispatch, sortType, sortData, searchTitle])
 
     //basket
     useEffect(() => {
@@ -42,6 +46,7 @@ function App() {
         }
 
     }, [basketDispatch])
+
     useEffect(() => {
         localStorage.setItem('inBasket', JSON.stringify(inBasket))
     }, [inBasket])
@@ -50,10 +55,12 @@ function App() {
         let onBasket = !!inBasket.find( item => item.productID === buyProduct.productID)
         if (!onBasket) basketDispatch(AddIntoBasketActionCreator(buyProduct))
     },[inBasket])
+
     const clearBasket = useCallback(() => {
         localStorage.removeItem('inBasket')
         basketDispatch(RemoveAllFromBasketActionCreator())
     },[basketDispatch])
+
     const onChangeCountItemToBuy = useCallback((productID: string, newCount: number) => {
         basketDispatch(ChangeCountItemToBuyActionCreator(productID, newCount))
     },[basketDispatch])
@@ -71,7 +78,7 @@ function App() {
     //productData
     const setFilterProductData = useCallback((newFilter: string) => {
         setFilter(newFilter)
-    }, [filter])
+    }, [])
 
 
     return (

@@ -1,21 +1,25 @@
-import {CategoriesType, ProductDataPageType} from "../types";
+import {CategoriesType, ProductDataPageType, SortType} from "../types";
 import {catalogAPI} from "../../API/api";
 import {Dispatch} from "redux"
-import {AppRootStateType} from "../store";
-import {ThunkAction} from 'redux-thunk';
 
-type ActionType = GetProductDataAT | SetFetchingAT | ChangeCurrentPageAT
+export type ActionType = GetProductDataAT | SetFetchingAT
+    | ChangeCurrentPageAT | ChangeSortDataTypeAT | ChangeSearchTitleAT
 
 
 type GetProductDataAT = ReturnType<typeof getDataAC>
 type SetFetchingAT = ReturnType<typeof setFetchingAC>
 type ChangeCurrentPageAT = ReturnType<typeof changeCurrentPageAC>
+type ChangeSortDataTypeAT = ReturnType<typeof changeSortDataTypeAC>
+type ChangeSearchTitleAT = ReturnType<typeof changeSearchTitleAC>
 
 const initState: ProductDataPageType = {
     data: [],
     isFetching: false,
     currentPage: 1,
-    pageSize: 9
+    pageSize: 9,
+    sortData: '',
+    sortType: '',
+    searchTitle: ''
 }
 
 
@@ -27,6 +31,10 @@ export const productDataReducer = (state = initState, action: ActionType): Produ
             return {...state, isFetching: action.isFetching}
         case 'CHANGE_CURRENT_PAGE':
             return {...state, currentPage: action.currentPage}
+        case 'CHANGE_SORT_DATA_TYPE':
+            return {...state, sortData: action.sortData, sortType: action.sortType}
+        case 'CHANGE_SEARCH_TITLE':
+            return {...state, searchTitle: action.searchTitle}
         default:
             return state
     }
@@ -45,22 +53,14 @@ export const getDataAC = (data: [{
 }]) => ({type: 'GET_PRODUCT_DATA', data} as const)
 export const setFetchingAC = (isFetching: boolean) => ({type: 'SET_PRODUCT_FETCHING', isFetching} as const)
 export const changeCurrentPageAC = (currentPage: number) => ({type: 'CHANGE_CURRENT_PAGE', currentPage} as const)
+export const changeSortDataTypeAC = (sortData: string, sortType: SortType) =>
+    ({type: 'CHANGE_SORT_DATA_TYPE', sortData, sortType} as const)
+export const changeSearchTitleAC = (searchTitle: string) => ({type: 'CHANGE_SEARCH_TITLE', searchTitle} as const)
 
 
-export const getCatalogTC = (): ThunkAction<Promise<void>, AppRootStateType, unknown, ActionType> => {
-    return async (dispatch) => {
-        dispatch(setFetchingAC(true))
-        catalogAPI.getCatalog()
-            .then(response => {
-                dispatch(getDataAC(response))
-                dispatch(setFetchingAC(false))
-            })
-    }
-}
-
-export const getSortedCatalogTC = (sortData: string, sortType: string) => (dispatch: Dispatch<ActionType>) => {
+export const getCatalogTC = (currentPage: number, sortData: string, sortType: SortType, searchTitle: string) => (dispatch: Dispatch<ActionType>) => {
     dispatch(setFetchingAC(true))
-    catalogAPI.getSortedCatalog(sortData, sortType)
+    catalogAPI.getCatalog(currentPage, sortData, sortType, searchTitle)
         .then(response => {
             dispatch(getDataAC(response))
             dispatch(setFetchingAC(false))

@@ -1,10 +1,9 @@
 import React, {ChangeEvent, useState} from "react";
 import s from './SearchMenu.module.css'
-import {OptionsSelectType} from "../../../BLL/types";
+import {OptionsSelectType, SortType} from "../../../BLL/types";
 import {CustomSelect} from "../../CustomComponents/CustomSelect";
 import {useDispatch} from "react-redux";
-import {getDataAC, setFetchingAC} from "../../../BLL/reducers/productDataReducer";
-import {catalogAPI} from "../../../API/api";
+import {changeSearchTitleAC, changeSortDataTypeAC} from "../../../BLL/reducers/productDataReducer";
 import {InputAdornment, TextField} from "@material-ui/core";
 import {Search} from "@material-ui/icons";
 
@@ -19,12 +18,8 @@ export const SearchMenu = () => {
         {id: '4', value: 'Стоимости (сначала дорогие)'},
     ]
 
-    const sortedRequest = (sortData: string, sortType: string) => {
-        dispatch(setFetchingAC(true))
-        catalogAPI.getSortedCatalog(sortData, sortType).then(response => {
-            dispatch(getDataAC(response))
-            dispatch(setFetchingAC(false))
-        })
+    const sortedRequest = (sortData: string, sortType: SortType) => {
+        dispatch(changeSortDataTypeAC(sortData, sortType))
     }
 
     const onChangeSelectHandler = (value: string) => {
@@ -43,11 +38,12 @@ export const SearchMenu = () => {
         }
     }
     const onChangeSearchField = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        dispatch(setFetchingAC(true))
-        catalogAPI.getSearchCatalog(e.currentTarget.value).then(response => {
-            dispatch(getDataAC(response))
-            dispatch(setFetchingAC(false))
-        })
+        dispatch(changeSearchTitleAC(e.currentTarget.value))
+        // dispatch(setFetchingAC(true))
+        // catalogAPI.getSearchCatalog(e.currentTarget.value).then(response => {
+        //     dispatch(getDataAC(response))
+        //     dispatch(setFetchingAC(false))
+        // })
     }
 
     return (
@@ -68,7 +64,9 @@ export const SearchMenu = () => {
             <div className={s.selectContainer}>
 
                 <span> Сортировать по: </span>
-                <CustomSelect value={value} options={optionsToSelect} onChange={onChangeSelectHandler}/>
+                <CustomSelect value={value}
+                              options={optionsToSelect}
+                              onChange={onChangeSelectHandler}/>
             </div>
 
         </div>

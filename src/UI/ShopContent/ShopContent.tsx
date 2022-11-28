@@ -2,15 +2,17 @@ import React, {memo} from "react";
 import s from './ShopContent.module.css'
 import {ProductCard} from "./ProductCard/ProductCard";
 import {BasketProductType, ProductDataType} from "../../BLL/types";
+import { PaginationComponent } from "../CustomComponents/Pagination/Pagination";
 
 type ShopContentPropsType = {
     data: ProductDataType[]
     basketItems: BasketProductType[]
     setInBasket: (buyProduct: BasketProductType) => void
 }
+
+
 export const ShopContent = memo((props: ShopContentPropsType) => {
-    // const pageSize = useSelector<AppRootStateType, number>(state => state.productData.pageSize)
-    // const pagesCount = Math.ceil(props.data.length / pageSize)
+
     return (
             <div className={s.contentContainer}>
                 <div className={s.productCardsContainer}>
@@ -24,7 +26,7 @@ export const ShopContent = memo((props: ShopContentPropsType) => {
                     )
                 })}
                 </div>
-                {/*<PaginationComponent pagesCount={pagesCount}/>*/}
+                <PaginationComponent pagesCount={2}/>
             </div>
     )
 })

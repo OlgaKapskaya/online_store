@@ -7,7 +7,10 @@ export type ProductDataPageType = {
     data: ProductDataType[]
     isFetching: boolean
     currentPage: number
-    pageSize: number
+    pageSize: number,
+    sortData: string,
+    sortType: SortType,
+    searchTitle: string
 }
 
 export type ProductDataType = {
@@ -39,3 +42,4 @@ export type OptionsSelectType = {
     id: string
     value: string
 }
+export type SortType = 'desc' | 'asc' | ''
