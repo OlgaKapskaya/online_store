@@ -7,17 +7,23 @@ import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../BLL/store";
 
 type ShopContentPropsType = {
-    data: ProductDataType[]
+    filter: string
 }
 
 
 export const ShopContent = memo((props: ShopContentPropsType) => {
     const basketItems = useSelector<AppRootStateType, BasketProductType[]>(state => state.basketData)
+    const productData = useSelector<AppRootStateType, ProductDataType[]>(state => state.productData.data)
+
+    //filter productData
+    let filteredProductData: ProductDataType[]
+    if (props.filter === 'all') filteredProductData = productData
+    else filteredProductData = productData.filter(elem => elem.productCategories.type === props.filter)
 
     return (
             <div className={s.contentContainer}>
                 <div className={s.productCardsContainer}>
-                {props.data.map(elem => {
+                {filteredProductData.map(elem => {
                     const onBasket = !!basketItems.find(item => item.productID === elem.productID)
                     return (
                         <ProductCard product={elem}

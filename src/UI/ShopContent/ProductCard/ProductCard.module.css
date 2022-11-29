@@ -20,6 +20,19 @@
     box-shadow: 1px 1px 5px rgba(0,0,0, .2);
     margin: 10px;
 }
+.cardContainer a{
+    align-self: flex-start;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+.cardContainer a:hover{
+    text-decoration: none;
+    color: #ff9100;
+}
+
 .formProductPhoto{
     display: flex;
     align-items: center;
@@ -31,13 +44,13 @@
     margin: 10px;
     width: 90%;
 }
-.productName{
-    align-self: flex-start;
-    font-weight: bold;
-    font-size: 16px;
-    margin: 5px 10px;
-    cursor: pointer;
-}
+/*.productName{*/
+/*    align-self: flex-start;*/
+/*    font-weight: bold;*/
+/*    font-size: 16px;*/
+/*    margin: 5px 10px;*/
+/*    cursor: pointer;*/
+/*}*/
 .info{
     display: flex;
     align-self: flex-start;

@@ -11,5 +11,9 @@ export const catalogAPI = {
 
         return instance.get(`catalog?page=${currentPage}&limit=9` + onSorted + onSearch)
             .then(response => response.data)
+    },
+    getProduct(productID: string | undefined){
+            return instance.get(`catalog/${productID}`)
+                .then(response => response.data)
     }
 }

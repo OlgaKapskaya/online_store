@@ -13,16 +13,18 @@ import {useSelector} from "react-redux";
 import {AppRootStateType, useAppDispatch} from "./BLL/store";
 import {Preloader} from "./UI/CustomComponents/Preloader/Preloader";
 import {Navigate, Route, Routes} from "react-router-dom";
+import {PersonalProductCard} from "./UI/ShopContent/PersonalProductCard/PersonalProductCard";
 
 function App() {
-    const [filter, setFilter] = useState('all')
+
+    const [filter, setFilter] = useState<string>('all')
     const basketData = useSelector<AppRootStateType, BasketProductType[]>(state => state.basketData)
-    const productData = useSelector<AppRootStateType, ProductDataPageType>(state => state.productData)
-    const {currentPage, sortData, sortType, searchTitle} = productData
+    // const productData = useSelector<AppRootStateType, ProductDataPageType>(state => state.productData)
+    const {currentPage, sortData, sortType, searchTitle, isFetching} = useSelector<AppRootStateType, ProductDataPageType>(state => state.productData)
 
     const dispatch = useAppDispatch()
     // console.log(JSON.stringify(state.productData))
-    // console.log(JSON.stringify(info))
+
 
 
     useEffect(() => {
@@ -38,12 +40,6 @@ function App() {
         localStorage.setItem('inBasket', JSON.stringify(basketData))
     }, [basketData])
 
-    //filter productData
-    let filteredProductData
-    if (filter === 'all') filteredProductData = productData.data
-    else filteredProductData = productData.data.filter(elem => elem.productCategories.type === filter)
-
-
     //productData
     const setFilterProductData = useCallback((newFilter: string) => {
         setFilter(newFilter)
@@ -58,10 +54,11 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Navigate to='/catalog'/>}/>
                     <Route path='catalog' element={
-                        productData.isFetching
+                        isFetching
                             ? <Preloader/>
-                            : <ShopContent data={filteredProductData}/>
+                            : <ShopContent filter={filter}/>
                     }/>
+                    <Route path='catalog/:productID' element={<PersonalProductCard />}/>
 
                 </Routes>
 

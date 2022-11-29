@@ -5,6 +5,7 @@ import {Button} from "@material-ui/core";
 import {Done, ShoppingCartOutlined} from "@material-ui/icons";
 import {addIntoBasketAC} from "../../../BLL/reducers/basketReducer";
 import {useAppDispatch} from "../../../BLL/store";
+import {NavLink} from "react-router-dom";
 
 type ProductCardPropsType = {
     product: ProductDataType
@@ -33,23 +34,24 @@ export const ProductCard = memo((props: ProductCardPropsType) => {
             <form className={s.formProductPhoto}>
                 <img src={props.product.productPhoto} alt={'product'} className={s.productPhoto}/>
             </form>
-
-            <div className={s.productName}>{props.product.productName}</div>
+            <NavLink to={`:${props.product.productID}`}>
+                <div className={s.productName}>{props.product.productName}</div>
+            </NavLink>
             <div className={s.info}>Артикул: {props.product.productArticle}</div>
             <div className={s.info}>Описание: {props.product.productDescription}</div>
             <div className={s.price}>{props.product.productPrice} BYN</div>
 
             <div className={s.buttonBuy}>
                 {props.onBasket &&
-                    <Button color={'secondary'}
-                            variant={'text'}
+                    <Button color='secondary'
+                            variant='text'
                             onClick={onClickSetInBasketHandler}
                             startIcon={<Done/>}>
                         Товар в корзине
                     </Button>}
                 {!props.onBasket &&
-                    <Button color={'secondary'}
-                            variant={'contained'}
+                    <Button color='secondary'
+                            variant='contained'
                             onClick={onClickSetInBasketHandler}
                             startIcon={<ShoppingCartOutlined/>}>
                         В корзину
