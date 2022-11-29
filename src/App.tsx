@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect,  useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import './App.css';
 import {HeaderComponent} from "./UI/Header/HeaderComponent";
 import {Navigation} from "./UI/Navigation/Navigation";
@@ -6,12 +6,13 @@ import {ShopContent} from "./UI/ShopContent/ShopContent";
 import {state} from "./BLL/state";
 import {BasketProductType, ProductDataPageType} from "./BLL/types";
 import {
-    addIntoBasketAC, getBasketIntoLocalStorageTC,
+    getBasketIntoLocalStorageTC,
 } from "./BLL/reducers/basketReducer";
 import {getCatalogTC} from "./BLL/reducers/productDataReducer";
 import {useSelector} from "react-redux";
 import {AppRootStateType, useAppDispatch} from "./BLL/store";
 import {Preloader} from "./UI/CustomComponents/Preloader/Preloader";
+import {Navigate, Route, Routes} from "react-router-dom";
 
 function App() {
     const [filter, setFilter] = useState('all')
@@ -20,12 +21,13 @@ function App() {
     const {currentPage, sortData, sortType, searchTitle} = productData
 
     const dispatch = useAppDispatch()
-    // console.log(JSON.stringify(productData.data))
+    // console.log(JSON.stringify(state.productData))
+    // console.log(JSON.stringify(info))
 
 
     useEffect(() => {
         dispatch(getCatalogTC(currentPage, sortData, sortType, searchTitle))
-    },[currentPage, dispatch, sortType, sortData, searchTitle])
+    }, [currentPage, dispatch, sortType, sortData, searchTitle])
 
     //basket
     useEffect(() => {
@@ -36,17 +38,10 @@ function App() {
         localStorage.setItem('inBasket', JSON.stringify(basketData))
     }, [basketData])
 
-    const setInBasket = useCallback((buyProduct: BasketProductType) => {
-        let onBasket = !!basketData.find( item => item.productID === buyProduct.productID)
-        if (!onBasket) dispatch(addIntoBasketAC(buyProduct))
-    },[dispatch, basketData])
-
-
     //filter productData
     let filteredProductData
     if (filter === 'all') filteredProductData = productData.data
-    else  filteredProductData = productData.data.filter(elem => elem.productCategories.type === filter)
-
+    else filteredProductData = productData.data.filter(elem => elem.productCategories.type === filter)
 
 
     //productData
@@ -54,21 +49,26 @@ function App() {
         setFilter(newFilter)
     }, [])
 
-
     return (
         <div className='App'>
-            <HeaderComponent />
+            <HeaderComponent/>
             <Navigation categories={state.categoriesData}
                         setFilterProductData={setFilterProductData}/>
             <div className='content'>
-                {productData.isFetching
-                    ? <Preloader/>
-                    : <ShopContent data={filteredProductData}
-                             basketItems={basketData}
-                             setInBasket={setInBasket}/>}
+                <Routes>
+                    <Route path='/' element={<Navigate to='/catalog'/>}/>
+                    <Route path='catalog' element={
+                        productData.isFetching
+                            ? <Preloader/>
+                            : <ShopContent data={filteredProductData}/>
+                    }/>
+
+                </Routes>
+
             </div>
         </div>
     );
 }
 
 export default App;
+

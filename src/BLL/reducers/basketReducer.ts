@@ -50,7 +50,7 @@ export const addIntoBasketAllAC = (buyProducts: BasketProductType[]) => {
 
 //thunk creators
 export const getBasketIntoLocalStorageTC = () => (dispatch: Dispatch<BasketReducerAT>) => {
-    let local_storage = localStorage.getItem('inBasket')
+    const local_storage = localStorage.getItem('inBasket')
     if (local_storage) {
         let storage_get = JSON.parse(local_storage)
         dispatch(addIntoBasketAllAC(storage_get))

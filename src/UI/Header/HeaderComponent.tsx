@@ -13,9 +13,8 @@ export const HeaderComponent = memo((props: HeaderComponentProps) => {
     const basketProduct = useSelector<AppRootStateType, BasketProductType[]>(state => state.basketData)
     const [isVisible, setIsVisible] = useState(false)
     const onClickBasketHandler = () => setIsVisible(true)
-    let totalPrice = useMemo(() => basketProduct.reduce((sum, current) =>
+    const totalPrice = useMemo(() => basketProduct.reduce((sum, current) =>
         sum + current.productPrice * current.productCountToBuy, 0), [basketProduct])
-
 
     return (
         <div className={s.HeaderContainer}>

@@ -2,14 +2,14 @@ import React, {ChangeEvent, useState} from "react";
 import s from './SearchMenu.module.css'
 import {OptionsSelectType, SortType} from "../../../BLL/types";
 import {CustomSelect} from "../../CustomComponents/CustomSelect";
-import {useDispatch} from "react-redux";
 import {changeSearchTitleAC, changeSortDataTypeAC} from "../../../BLL/reducers/productDataReducer";
 import {InputAdornment, TextField} from "@material-ui/core";
 import {Search} from "@material-ui/icons";
+import {useAppDispatch} from "../../../BLL/store";
 
 export const SearchMenu = () => {
     const [value, setValue] = useState('Без сортировки')
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     const optionsToSelect: OptionsSelectType[] = [
         {id: '1', value: 'Названию (от А до Я)'},
@@ -39,11 +39,6 @@ export const SearchMenu = () => {
     }
     const onChangeSearchField = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         dispatch(changeSearchTitleAC(e.currentTarget.value))
-        // dispatch(setFetchingAC(true))
-        // catalogAPI.getSearchCatalog(e.currentTarget.value).then(response => {
-        //     dispatch(getDataAC(response))
-        //     dispatch(setFetchingAC(false))
-        // })
     }
 
     return (

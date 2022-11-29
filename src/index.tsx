@@ -7,6 +7,7 @@ import {createTheme, ThemeProvider} from "@material-ui/core";
 import {grey, orange} from "@material-ui/core/colors";
 import {Provider} from "react-redux";
 import {store} from "./BLL/store";
+import {HashRouter} from "react-router-dom";
 
 
 const theme = createTheme({
@@ -26,7 +27,9 @@ const root = ReactDOM.createRoot(
 root.render(
     <Provider store={store}>
         <ThemeProvider theme={theme}>
-            <App/>
+            <HashRouter>
+                <App/>
+            </HashRouter>
         </ThemeProvider>
     </Provider>,
 );

@@ -1,16 +1,21 @@
-import React from "react";
+import React, {memo} from "react";
 import s from './ProductCard.module.css'
 import {BasketProductType, ProductDataType} from "../../../BLL/types";
 import {Button} from "@material-ui/core";
 import {Done, ShoppingCartOutlined} from "@material-ui/icons";
+import {addIntoBasketAC} from "../../../BLL/reducers/basketReducer";
+import {useAppDispatch} from "../../../BLL/store";
 
 type ProductCardPropsType = {
     product: ProductDataType
     onBasket: boolean
-    setInBasket: (buyProduct: BasketProductType) => void
 }
-export const ProductCard = (props: ProductCardPropsType) => {
+export const ProductCard = memo((props: ProductCardPropsType) => {
 
+    const dispatch = useAppDispatch()
+    const setInBasket = (buyProduct: BasketProductType) => {
+        if (!props.onBasket) dispatch(addIntoBasketAC(buyProduct))
+    }
     const onClickSetInBasketHandler = () => {
         let newProduct: BasketProductType = {
             productID: props.product.productID,
@@ -20,7 +25,7 @@ export const ProductCard = (props: ProductCardPropsType) => {
             productPrice: props.product.productPrice,
             productCountToBuy: 1
         }
-        props.setInBasket(newProduct)
+        setInBasket(newProduct)
     }
 
     return (
@@ -54,4 +59,4 @@ export const ProductCard = (props: ProductCardPropsType) => {
 
         </div>
     )
-}
+})
