@@ -13,6 +13,7 @@ type ShopContentPropsType = {
 
 export const ShopContent = memo((props: ShopContentPropsType) => {
 
+
     return (
             <div className={s.contentContainer}>
                 <div className={s.productCardsContainer}>

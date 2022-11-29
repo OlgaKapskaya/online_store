@@ -3,18 +3,22 @@ import {Button, Drawer} from "@material-ui/core";
 import {BasketItem} from "../BasketItem/BasketItem";
 import React from "react";
 import {BasketProductType} from "../../../BLL/types";
+import {useAppDispatch} from "../../../BLL/store";
+import {clearBasketTC} from "../../../BLL/reducers/basketReducer";
 
 
 type BasketProsType = {
     basketProduct: BasketProductType[]
     totalPrice: number
     isVisible: boolean
-    clearBasket: () => void
-    onChangeCountItemToBuy: (productID: string, newCount: number) => void
-    onRemoveItemFromBasket: (productID: string) => void
     setIsVisible: (isVisible: boolean) => void
 }
 export const Basket = (props: BasketProsType) => {
+    const dispatch = useAppDispatch()
+    const onClearBasketHandler = () => {
+        dispatch(clearBasketTC())
+    }
+
     return (
         <Drawer anchor={'right'}
                 open={props.isVisible}
@@ -31,15 +35,13 @@ export const Basket = (props: BasketProsType) => {
                 <Button color={'primary'}
                         variant={'contained'}
                         disabled={props.basketProduct.length <= 0}
-                        onClick={props.clearBasket}>Очистить корзину</Button>
+                        onClick={onClearBasketHandler}>Очистить корзину</Button>
                 <Button color={'secondary'}
                         variant={'contained'}
                         disabled={props.basketProduct.length <= 0}>Оформить заказ</Button>
             </div>
             {props.basketProduct.map(elem => <BasketItem key={elem.productID}
-                                                         basketItem={elem}
-                                                         onChangeCountItemToBuy={props.onChangeCountItemToBuy}
-                                                         onRemoveItemFromBasket={props.onRemoveItemFromBasket}/>)}
+                                                         basketItem={elem}/>)}
 
         </Drawer>
     )

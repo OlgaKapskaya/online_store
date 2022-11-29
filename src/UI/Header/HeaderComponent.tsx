@@ -4,19 +4,17 @@ import {Badge, IconButton} from "@material-ui/core";
 import {QueryBuilderOutlined, ShoppingBasket} from "@material-ui/icons";
 import {BasketProductType} from "../../BLL/types";
 import {Basket} from "./Basket/Basket";
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "../../BLL/store";
 
 type HeaderComponentProps = {
-    basketProduct: BasketProductType[]
-    clearBasket: () => void
-    onChangeCountItemToBuy: (productID: string, newCount: number) => void
-    onRemoveItemFromBasket: (productID: string) => void
-
 }
 export const HeaderComponent = memo((props: HeaderComponentProps) => {
+    const basketProduct = useSelector<AppRootStateType, BasketProductType[]>(state => state.basketData)
     const [isVisible, setIsVisible] = useState(false)
     const onClickBasketHandler = () => setIsVisible(true)
-    let totalPrice = useMemo(() => props.basketProduct.reduce((sum, current) =>
-        sum + current.productPrice * current.productCountToBuy, 0), [props.basketProduct])
+    let totalPrice = useMemo(() => basketProduct.reduce((sum, current) =>
+        sum + current.productPrice * current.productCountToBuy, 0), [basketProduct])
 
 
     return (
@@ -45,18 +43,15 @@ export const HeaderComponent = memo((props: HeaderComponentProps) => {
             <div className={s.basketContainer}>
                 <span><b>{totalPrice} BYN </b></span>
                 <IconButton onClick={onClickBasketHandler}>
-                    <Badge badgeContent={props.basketProduct.length} color="secondary"
-                           overlap="rectangular"
-                           invisible={props.basketProduct.length < 1} variant={'standard'}>
-                        <ShoppingBasket color={'primary'}/>
+                    <Badge badgeContent={basketProduct.length} color='secondary'
+                           overlap='rectangular'
+                           invisible={basketProduct.length < 1} variant='standard'>
+                        <ShoppingBasket color='primary'/>
                     </Badge>
                 </IconButton>
-                {isVisible && <Basket basketProduct={props.basketProduct}
+                {isVisible && <Basket basketProduct={basketProduct}
                                       totalPrice={totalPrice}
                                       isVisible={isVisible}
-                                      clearBasket={props.clearBasket}
-                                      onChangeCountItemToBuy={props.onChangeCountItemToBuy}
-                                      onRemoveItemFromBasket={props.onRemoveItemFromBasket}
                                       setIsVisible={setIsVisible}/>}
             </div>
 

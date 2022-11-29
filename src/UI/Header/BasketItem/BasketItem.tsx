@@ -3,21 +3,26 @@ import s from './BasketItem.module.css'
 import {BasketProductType} from "../../../BLL/types";
 import {IconButton, TextField, Tooltip} from "@material-ui/core";
 import {DeleteOutlineOutlined} from "@material-ui/icons";
+import {useAppDispatch} from "../../../BLL/store";
+import {changeCountItemToBuyAC, removeItemFromBasketAC} from "../../../BLL/reducers/basketReducer";
 
 
 type BasketItemPropsType = {
     basketItem: BasketProductType
-    onChangeCountItemToBuy: (productID: string, newCount: number) => void
-    onRemoveItemFromBasket: (productID: string) => void
 }
 export const BasketItem = (props: BasketItemPropsType) => {
-    const onChangeCountOfItem = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        if (+event.currentTarget.value > 0 ) {
-            props.onChangeCountItemToBuy(props.basketItem.productID, +event.currentTarget.value)
-        }
+    const dispatch = useAppDispatch()
+
+    const onChangeCountItemToBuyHandler = (productID: string, newCount: number) => {
+        dispatch(changeCountItemToBuyAC(productID, newCount))
     }
     const onRemoveItemFromBasketHandler = () => {
-        props.onRemoveItemFromBasket(props.basketItem.productID)
+        dispatch(removeItemFromBasketAC(props.basketItem.productID))
+    }
+    const onChangeCountOfItem = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        if (+event.currentTarget.value > 0 ) {
+            onChangeCountItemToBuyHandler(props.basketItem.productID, +event.currentTarget.value)
+        }
     }
 
     return (

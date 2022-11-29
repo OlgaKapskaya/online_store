@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useReducer, useState} from 'react';
+import React, {useCallback, useEffect,  useState} from 'react';
 import './App.css';
 import {HeaderComponent} from "./UI/Header/HeaderComponent";
 import {Navigation} from "./UI/Navigation/Navigation";
@@ -6,10 +6,7 @@ import {ShopContent} from "./UI/ShopContent/ShopContent";
 import {state} from "./BLL/state";
 import {BasketProductType, ProductDataPageType} from "./BLL/types";
 import {
-    AddIntoBasketActionCreator,
-    AddIntoBasketAllAction,
-    basketReducer, ChangeCountItemToBuyActionCreator,
-    RemoveAllFromBasketActionCreator, RemoveItemFromBasketActionCreator
+    addIntoBasketAC, getBasketIntoLocalStorageTC,
 } from "./BLL/reducers/basketReducer";
 import {getCatalogTC} from "./BLL/reducers/productDataReducer";
 import {useSelector} from "react-redux";
@@ -18,18 +15,11 @@ import {Preloader} from "./UI/CustomComponents/Preloader/Preloader";
 
 function App() {
     const [filter, setFilter] = useState('all')
-    const [inBasket, basketDispatch] = useReducer(basketReducer, [])
-
-
+    const basketData = useSelector<AppRootStateType, BasketProductType[]>(state => state.basketData)
     const productData = useSelector<AppRootStateType, ProductDataPageType>(state => state.productData)
-    const currentPage = productData.currentPage
-    const sortData = productData.sortData
-    const sortType = productData.sortType
-    const searchTitle = productData.searchTitle
+    const {currentPage, sortData, sortType, searchTitle} = productData
 
     const dispatch = useAppDispatch()
-
-    console.log(searchTitle)
     // console.log(JSON.stringify(productData.data))
 
 
@@ -39,34 +29,18 @@ function App() {
 
     //basket
     useEffect(() => {
-        let local_storage = localStorage.getItem('inBasket')
-        if (local_storage) {
-            let storage_get = JSON.parse(local_storage)
-            basketDispatch(AddIntoBasketAllAction(storage_get))
-        }
-
-    }, [basketDispatch])
+        dispatch(getBasketIntoLocalStorageTC())
+    }, [dispatch])
 
     useEffect(() => {
-        localStorage.setItem('inBasket', JSON.stringify(inBasket))
-    }, [inBasket])
+        localStorage.setItem('inBasket', JSON.stringify(basketData))
+    }, [basketData])
 
     const setInBasket = useCallback((buyProduct: BasketProductType) => {
-        let onBasket = !!inBasket.find( item => item.productID === buyProduct.productID)
-        if (!onBasket) basketDispatch(AddIntoBasketActionCreator(buyProduct))
-    },[inBasket])
+        let onBasket = !!basketData.find( item => item.productID === buyProduct.productID)
+        if (!onBasket) dispatch(addIntoBasketAC(buyProduct))
+    },[dispatch, basketData])
 
-    const clearBasket = useCallback(() => {
-        localStorage.removeItem('inBasket')
-        basketDispatch(RemoveAllFromBasketActionCreator())
-    },[basketDispatch])
-
-    const onChangeCountItemToBuy = useCallback((productID: string, newCount: number) => {
-        basketDispatch(ChangeCountItemToBuyActionCreator(productID, newCount))
-    },[basketDispatch])
-    const onRemoveItemFromBasket = useCallback((productID: string) => {
-        basketDispatch(RemoveItemFromBasketActionCreator(productID))
-    },[basketDispatch])
 
     //filter productData
     let filteredProductData
@@ -83,17 +57,14 @@ function App() {
 
     return (
         <div className='App'>
-            <HeaderComponent basketProduct={inBasket}
-                             clearBasket={clearBasket}
-                             onChangeCountItemToBuy={onChangeCountItemToBuy}
-                             onRemoveItemFromBasket={onRemoveItemFromBasket}/>
+            <HeaderComponent />
             <Navigation categories={state.categoriesData}
                         setFilterProductData={setFilterProductData}/>
             <div className='content'>
                 {productData.isFetching
                     ? <Preloader/>
                     : <ShopContent data={filteredProductData}
-                             basketItems={inBasket}
+                             basketItems={basketData}
                              setInBasket={setInBasket}/>}
             </div>
         </div>

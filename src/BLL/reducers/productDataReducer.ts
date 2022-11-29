@@ -2,7 +2,7 @@ import {CategoriesType, ProductDataPageType, SortType} from "../types";
 import {catalogAPI} from "../../API/api";
 import {Dispatch} from "redux"
 
-export type ActionType = GetProductDataAT | SetFetchingAT
+export type ProductDataReducerAT = GetProductDataAT | SetFetchingAT
     | ChangeCurrentPageAT | ChangeSortDataTypeAT | ChangeSearchTitleAT
 
 
@@ -23,7 +23,7 @@ const initState: ProductDataPageType = {
 }
 
 
-export const productDataReducer = (state = initState, action: ActionType): ProductDataPageType => {
+export const productDataReducer = (state = initState, action: ProductDataReducerAT): ProductDataPageType => {
     switch (action.type) {
         case 'GET_PRODUCT_DATA':
             return {...state, data: [...action.data]}
@@ -58,7 +58,7 @@ export const changeSortDataTypeAC = (sortData: string, sortType: SortType) =>
 export const changeSearchTitleAC = (searchTitle: string) => ({type: 'CHANGE_SEARCH_TITLE', searchTitle} as const)
 
 
-export const getCatalogTC = (currentPage: number, sortData: string, sortType: SortType, searchTitle: string) => (dispatch: Dispatch<ActionType>) => {
+export const getCatalogTC = (currentPage: number, sortData: string, sortType: SortType, searchTitle: string) => (dispatch: Dispatch<ProductDataReducerAT>) => {
     dispatch(setFetchingAC(true))
     catalogAPI.getCatalog(currentPage, sortData, sortType, searchTitle)
         .then(response => {
