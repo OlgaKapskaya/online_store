@@ -60,3 +60,4 @@ export const clearBasketTC = () => (dispatch: Dispatch<BasketReducerAT>) => {
     localStorage.removeItem('inBasket')
     dispatch(removeAllFromBasketAC())
 }
+

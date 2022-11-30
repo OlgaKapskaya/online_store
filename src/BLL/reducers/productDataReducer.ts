@@ -67,3 +67,4 @@ export const getCatalogTC = (currentPage: number, sortData: string, sortType: So
         })
 }
 
+

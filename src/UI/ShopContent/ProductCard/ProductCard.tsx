@@ -32,7 +32,9 @@ export const ProductCard = memo((props: ProductCardPropsType) => {
     return (
         <div className={s.cardContainer}>
             <form className={s.formProductPhoto}>
-                <img src={props.product.productPhoto} alt={'product'} className={s.productPhoto}/>
+                <NavLink to={`:${props.product.productID}`}>
+                    <img src={props.product.productPhoto} alt={'product'} className={s.productPhoto}/>
+                </NavLink>
             </form>
             <NavLink to={`:${props.product.productID}`}>
                 <div className={s.productName}>{props.product.productName}</div>

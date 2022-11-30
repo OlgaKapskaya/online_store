@@ -1,41 +1,112 @@
-.contentContainer{
+@media screen and (max-width: 629px) {
+    .productCardContainer {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .productPhoto {
+        max-width: 100%;
+    }
+    .titleAndPhoto{
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+    }
+    .info {
+        width: 90%;
+    }
+
+
+}
+
+@media screen and (min-width: 630px) {
+    .productCardContainer {
+        flex-direction: row;
+        align-items: flex-start;
+        width: 70%;
+    }
+    .productPhoto {
+        max-width: 60%;
+    }
+    .titleAndPhoto{
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 60%;
+    }
+    .info {
+        width: 40%;
+    }
+}
+
+.contentContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /*width: 70%;*/
-    width: 100%;
 }
-.photoAndDescription{
-    display: flex;
-}
-.description{
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-}
-.productCardContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 70%;
-}
-.productPhoto{
-    max-width: 50%;
-}
-.backLink{
-    width: 100%;
-    display: flex;
-    align-items: flex-start;
 
+h2 {
+    margin: 0
 }
-a{
+
+.productCardContainer {
+    display: flex;
+}
+
+.titleAndPhoto {
+    display: flex;
+    flex-direction: column;
+}
+
+.price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 15px 0;
+}
+
+.description {
+    /*border-top: 1px solid #e6e6e6;*/
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px 0;
+}
+
+.otherInfo {
+    border-top: 1px solid #e6e6e6;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px 0;
+}
+
+.backLink {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+}
+
+a {
     display: flex;
     align-items: center;
     padding: 10px;
     text-decoration: none;
     color: #212121;
 }
-a:hover{
+
+a:hover {
     color: #ff9100;
+}
+
+.infoTitle {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 20px 0;
 }
