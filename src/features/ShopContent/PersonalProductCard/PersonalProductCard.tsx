@@ -5,42 +5,41 @@ import {BasketProductType, ProductDataType} from "../../../bll/types";
 import {Done, ImportExport, KeyboardBackspace, ShoppingCartOutlined} from "@material-ui/icons";
 import {catalogAPI} from "../../../dal/api";
 import {Button} from "@material-ui/core";
-import {AppRootStateType, useAppDispatch} from "../../../bll/store";
+import {useAppDispatch, useAppSelector} from "../../../bll/store";
 import {setFetchingAC} from "../../../bll/reducers/productDataReducer";
-import {useSelector} from "react-redux";
 import {Preloader} from "../../../common/components/Preloader/Preloader";
 import {addIntoBasketAC} from "../../../bll/reducers/basketReducer";
 
 
-const createProduct = (product: ProductDataType | {}):ProductDataType => {
-    const {
-        productID = "",
-        productName = "",
-        productPhoto = "",
-        productArticle = "",
-        productDescription = "",
-        productPrice = 0,
-        productCount = 0,
-        productCategories = {
-            type:""
-        },
-    } = product as any
-    return {
-        productID,
-        productName,
-        productPhoto,
-        productArticle,
-        productDescription,
-        productPrice,
-        productCount,
-        productCategories,
-    }
-}
+// const createProduct = (product: ProductDataType | {}):ProductDataType => {
+//     const {
+//         productID = "",
+//         productName = "",
+//         productPhoto = "",
+//         productArticle = "",
+//         productDescription = "",
+//         productPrice = 0,
+//         productCount = 0,
+//         productCategories = {
+//             type:""
+//         },
+//     } = product as any
+//     return {
+//         productID,
+//         productName,
+//         productPhoto,
+//         productArticle,
+//         productDescription,
+//         productPrice,
+//         productCount,
+//         productCategories,
+//     }
+// }
 export const PersonalProductCard: FC = () => {
     const params = useParams()
-    const basketItems = useSelector<AppRootStateType, BasketProductType[]>(state => state.basketData)
-    const isFetching = useSelector<AppRootStateType, boolean>(state => state.productData.isFetching)
-    const [product, setProduct] = useState<ProductDataType>(createProduct({}))
+    const basketItems = useAppSelector<BasketProductType[]>(state => state.basketData)
+    const isFetching =  useAppSelector<boolean>(state => state.productData.isFetching)
+    const [product, setProduct] = useState<ProductDataType>({} as ProductDataType)
     const dispatch = useAppDispatch()
     const onBasket = !!basketItems.find(item => item.productID === product.productID)
 
@@ -58,15 +57,10 @@ export const PersonalProductCard: FC = () => {
     }
     const onClickSetInBasketHandler = () => {
         // TODO
-        const newProduct = {
-            productID: product.productID,
-            productName: product.productName,
-            productPhoto: product.productPhoto,
-            productArticle: product.productArticle,
-            productPrice: product.productPrice,
+        const newProduct: BasketProductType = {
+            ...product,
             productCountToBuy: 1
         }
-
         setInBasket(newProduct)
     }
     return (

@@ -3,21 +3,18 @@ import {useAppDispatch, useAppSelector} from "../../../bll/store";
 import {selectBasketData} from "../../../bll/selectors/backetSelectors";
 import {getCatalogTC} from "../../../bll/reducers/productDataReducer";
 import {getBasketIntoLocalStorageTC} from "../../../bll/reducers/basketReducer";
-import {useFilterProductData} from "./useFilterProductData";
 
 
 
 export const useAppFetchLogic = () => {
-
     const basketData = useAppSelector(selectBasketData)
-    // const productData = useSelector<AppRootStateType, ProductDataPageType>(state => state.productData)
+    // const productData = useAppSelector<ProductDataPageType>(state => state.productData)
     const {currentPage, sortData, sortType, searchTitle, isFetching} = useAppSelector(state => state.productData)
 
     const dispatch = useAppDispatch()
     // console.log(JSON.stringify(state.productData))
 
-
-    const {filter,setFilterProductData} = useFilterProductData()
+    // const {filter,setFilterProductData} = useFilterProductData()
 
     useEffect(() => {
         dispatch(getCatalogTC(currentPage, sortData, sortType, searchTitle))
@@ -32,9 +29,5 @@ export const useAppFetchLogic = () => {
         localStorage.setItem('inBasket', JSON.stringify(basketData))
     }, [basketData])
 
-    //productData
-
-
-
-    return {isFetching,filter,setFilterProductData}
+    return {isFetching}
 }

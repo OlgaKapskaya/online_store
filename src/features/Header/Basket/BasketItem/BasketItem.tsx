@@ -4,6 +4,7 @@ import {BasketProductType} from "../../../../bll/types";
 import {DeleteButton} from "../../../../common/components/DeleteButton/DeleteButton";
 import {Input} from "../../../../common/components/Input/Input";
 import {useBasketItem} from "./hooks/useBasketItem";
+import {CURRENCY} from "../../../../common/utils/constants/constants";
 
 
 type BasketItemPropsType = {
@@ -19,7 +20,7 @@ export const BasketItem: FC<BasketItemPropsType> = ({basketItem}) => {
                 <div className={s.info}>
                     <div className={s.productName}>{basketItem.productName}</div>
                     <div className={s.article}>Артикул: {basketItem.productArticle}</div>
-                    <div className={s.price}>{basketItem.productPrice} BYN</div>
+                    <div className={s.price}>{basketItem.productPrice} {CURRENCY}</div>
                     <div className={s.count}>
                         <span>Укажите количество:</span>
                         <Input type="number"

@@ -17,7 +17,7 @@ export const ShopContent = memo((props: ShopContentPropsType) => {
 
     //filter productData
     let filteredProductData: ProductDataType[]
-    if (props.filter === 'all') filteredProductData = productData
+    if (props.filter === "all") filteredProductData = productData
     else filteredProductData = productData.filter(elem => elem.productCategories.type === props.filter)
 
     return (
@@ -32,7 +32,7 @@ export const ShopContent = memo((props: ShopContentPropsType) => {
                     )
                 })}
                 </div>
-                <PaginationComponent pagesCount={2}/>
+                <PaginationComponent pagesCount={1}/>
             </div>
     )
 })

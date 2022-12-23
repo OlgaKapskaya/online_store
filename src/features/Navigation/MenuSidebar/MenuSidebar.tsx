@@ -1,8 +1,10 @@
-import {FC, useState} from "react";
-import {Button, Drawer, Menu, MenuItem} from "@material-ui/core";
+import {FC, ReactNode} from "react";
+import {Drawer} from "@material-ui/core";
 import {CategoriesType} from "../../../bll/types";
 import s from "./MenuSidebar.module.css";
 import {Close} from "@material-ui/icons";
+import {AccordionUC} from "../../../common/components/Accordion/AccordionUC";
+import {SidebarMenuItem} from "../../../common/components/SidebarMenuItem/SidebarMenuItem";
 
 type MenuSidebarPropsType = {
     categories: CategoriesType[]
@@ -11,58 +13,43 @@ type MenuSidebarPropsType = {
     setFilterProductData: (filter: string) => void
 }
 export const MenuSidebar: FC<MenuSidebarPropsType> = ({categories, setFilterProductData, onVisible, setOnVisible}) => {
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
 
     const handleClose = () => {
-        setAnchorEl(null);
+        setOnVisible(false);
     };
     const onClickAllButtonHandler = () => {
-        setFilterProductData('all')
+        setFilterProductData("all")
         handleClose()
     }
-    return (
-        <Drawer anchor={'left'}
-                open={onVisible}
-                onClose={() => setOnVisible(false)}>
-            <div className={s.sidebarContainer}>
-                    <Close className={s.closeButton} onClick={() => setOnVisible(false)}/>
-                <Button aria-controls="simple-menu"
-                        aria-haspopup="true"
-                        onClick={handleClick}
-                        variant={'outlined'}>
-                    Каталог
-                </Button>
-                <Menu
-                    id="simple-menu"
-                    anchorEl={anchorEl}
-                    keepMounted
-                    open={Boolean(anchorEl)}
-                    onClose={handleClose}
-                >
-                    <MenuItem color={'primary'}
-                              onClick={onClickAllButtonHandler}>ALL</MenuItem>
-                    {categories.map((elem, index) => {
-                        const onClickFilterButton = () => {
-                            setFilterProductData(elem.type)
-                            handleClose()
-                        }
-                        return (
-                            <div className={s.navLink} key={index}>
-                                <MenuItem
-                                    color={'primary'}
-                                    onClick={onClickFilterButton}>
-                                    {elem.type}</MenuItem>
-                            </div>)
-                    })
+    const menuItems = (): ReactNode => {
+        return (
+            <>
+                <SidebarMenuItem name="ALL" onClick={onClickAllButtonHandler} withBorder/>
+                {categories.map((elem, index) => {
+                    const onClickFilterButton = () => {
+                        setFilterProductData(elem.type)
+                        handleClose()
                     }
-                </Menu>
-                    <Button variant={'outlined'}> Адреса магазинов </Button>
-                    <Button variant={'outlined'}> Оплата и доставка </Button>
-                    <Button variant={'outlined'}> Сервисный центр </Button>
+                    return <div className={s.navLink} key={index}>
+                        <SidebarMenuItem name={elem.type} onClick={onClickFilterButton} withBorder/>
+                    </div>
+                })}
+            </>
+        )
+    }
+
+    return (
+        <Drawer anchor="left"
+                open={onVisible}
+                onClose={() => setOnVisible(false)}
+        >
+            <div className={s.sidebarContainer}>
+                <Close className={s.closeButton} onClick={() => setOnVisible(false)}/>
+
+                <AccordionUC name="categories" label="Каталог" details={menuItems()}/>
+                <SidebarMenuItem name="Адреса магазинов" withBorder/>
+                <SidebarMenuItem name="Оплата и доставка" withBorder/>
+                <SidebarMenuItem name="Сервисный центр" withBorder/>
             </div>
         </Drawer>
     )

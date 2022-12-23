@@ -1,29 +1,28 @@
-import React, {memo} from "react";
-import s from './ProductCard.module.css'
+import {FC, memo} from "react";
+import s from "./ProductCard.module.css"
 import {BasketProductType, ProductDataType} from "../../../bll/types";
-import {Button} from "@material-ui/core";
 import {Done, ShoppingCartOutlined} from "@material-ui/icons";
 import {addIntoBasketAC} from "../../../bll/reducers/basketReducer";
 import {useAppDispatch} from "../../../bll/store";
 import {NavLink} from "react-router-dom";
+import {ButtonUC} from "../../../common/components/Button/ButtonUC";
+import {CURRENCY} from "../../../common/utils/constants/constants";
 
 type ProductCardPropsType = {
     product: ProductDataType
     onBasket: boolean
 }
-export const ProductCard = memo((props: ProductCardPropsType) => {
+export const ProductCard: FC<ProductCardPropsType> = memo(({
+                                                               product, onBasket
+                                                           }) => {
 
     const dispatch = useAppDispatch()
     const setInBasket = (buyProduct: BasketProductType) => {
-        if (!props.onBasket) dispatch(addIntoBasketAC(buyProduct))
+        if (!onBasket) dispatch(addIntoBasketAC(buyProduct))
     }
     const onClickSetInBasketHandler = () => {
-        let newProduct: BasketProductType = {
-            productID: props.product.productID,
-            productName: props.product.productName,
-            productPhoto: props.product.productPhoto,
-            productArticle: props.product.productArticle,
-            productPrice: props.product.productPrice,
+        const newProduct: BasketProductType = {
+            ...product,
             productCountToBuy: 1
         }
         setInBasket(newProduct)
@@ -31,34 +30,32 @@ export const ProductCard = memo((props: ProductCardPropsType) => {
 
     return (
         <div className={s.cardContainer}>
-            <form className={s.formProductPhoto}>
-                <NavLink to={`:${props.product.productID}`}>
-                    <img src={props.product.productPhoto} alt={'product'} className={s.productPhoto}/>
+            <div className={s.formProductPhoto}>
+                <NavLink to={`:${product.productID}`}>
+                    <img src={product.productPhoto} alt="product" className={s.productPhoto}/>
                 </NavLink>
-            </form>
-            <NavLink to={`:${props.product.productID}`}>
-                <div className={s.productName}>{props.product.productName}</div>
+            </div>
+            <NavLink to={`:${product.productID}`}>
+                <span className={s.productName}>{product.productName}</span>
             </NavLink>
-            <div className={s.info}>Артикул: {props.product.productArticle}</div>
-            <div className={s.info}>Описание: {props.product.productDescription}</div>
-            <div className={s.price}>{props.product.productPrice} BYN</div>
+            <div className={s.info}>Артикул: {product.productArticle}</div>
+            <div className={s.info}>Описание: {product.productDescription}</div>
+            <div className={s.price}>{product.productPrice} {CURRENCY}</div>
 
             <div className={s.buttonBuy}>
-                {props.onBasket &&
-                    <Button color='secondary'
-                            variant='text'
-                            onClick={onClickSetInBasketHandler}
-                            startIcon={<Done/>}>
-                        Товар в корзине
-                    </Button>}
-                {!props.onBasket &&
-                    <Button color='secondary'
-                            variant='contained'
-                            onClick={onClickSetInBasketHandler}
-                            startIcon={<ShoppingCartOutlined/>}>
-                        В корзину
-                    </Button>}
-
+                {onBasket
+                    ? <ButtonUC name="Товар в корзине"
+                                onClick={onClickSetInBasketHandler}
+                                icon={<Done/>}
+                                color="secondary"
+                                variant="text"
+                    />
+                    : <ButtonUC name="В корзину"
+                                onClick={onClickSetInBasketHandler}
+                                icon={<ShoppingCartOutlined/>}
+                                color="secondary"
+                    />
+                }
             </div>
 
         </div>

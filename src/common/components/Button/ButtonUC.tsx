@@ -1,4 +1,4 @@
-import React, {FC, memo} from "react";
+import React, {FC, memo, ReactNode} from "react";
 import {Button} from "@material-ui/core";
 
 type ButtonUCPropsType = {
@@ -7,20 +7,24 @@ type ButtonUCPropsType = {
     variant?: "text" | "outlined" | "contained"
     disabled?: boolean
     onClick: () => void
+    icon?: ReactNode
 }
 export const ButtonUC: FC<ButtonUCPropsType> = memo(({
-                                                    name,
-                                                    color,
-                                                    variant,
-                                                    disabled,
-                                                    onClick
-                                                }) => {
+                                                         name,
+                                                         color,
+                                                         variant,
+                                                         disabled,
+                                                         onClick,
+                                                         icon
+                                                     }) => {
     return (
         <Button color={color ? color : "primary"}
                 variant={variant ? variant : "contained"}
                 disabled={disabled}
-                onClick={onClick}>
-            { name }
+                onClick={onClick}
+                startIcon={icon}
+        >
+            {name}
         </Button>
     )
 })

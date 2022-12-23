@@ -1,8 +1,8 @@
-import React, {memo, useState} from "react";
-import s from './Navigation.module.css'
+import {FC, memo} from "react";
+import s from "./Navigation.module.css"
 import {CategoriesType} from "../../bll/types";
 import {SearchMenu} from "./SearchMenu/SearchMenu";
-import {MobileMenuNavigation} from "./MobileMenuNavigationPropsType/MobileMenuNavigationPropsType";
+import {MobileMenuNavigation} from "./MobileMenuNavigation/MobileMenuNavigation";
 import {PcMenuNavigation} from "./PcMenuNavigation/PcMenuNavigation";
 
 export type NavigationPropsType = {
@@ -11,15 +11,15 @@ export type NavigationPropsType = {
 }
 
 
-export const Navigation = memo((props: NavigationPropsType) => {
+export const Navigation: FC<NavigationPropsType> = memo(({categories, setFilterProductData}) => {
 
-    const setFilterProductData = (value:string) => {
-        props.setFilterProductData(value)
+    const setFilterProductDataHandler = (value:string) => {
+        setFilterProductData(value)
     }
     return (
         <div className={s.NavigationContainer}>
-            <MobileMenuNavigation setFilterProductData={setFilterProductData} categories={props.categories}/>
-            <PcMenuNavigation categories={props.categories} setFilterProductData={setFilterProductData}/>
+            <MobileMenuNavigation setFilterProductData={setFilterProductData} categories={categories}/>
+            <PcMenuNavigation categories={categories} setFilterProductData={setFilterProductDataHandler}/>
             <div className={s.searchMenu}>
                 <SearchMenu />
             </div>

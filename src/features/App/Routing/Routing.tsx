@@ -6,9 +6,8 @@ import {ShopContent} from "../../ShopContent/ShopContent";
 import {PersonalProductCard} from "../../ShopContent/PersonalProductCard/PersonalProductCard";
 import {useAppFetchLogic} from "../hooks/useAppLogic";
 
-export const Routing:FC = () => {
-
-    const {isFetching, filter} = useAppFetchLogic()
+export const Routing:FC<{filter: string}> = ({filter}) => {
+    const {isFetching} = useAppFetchLogic()
 
     return (
         <Routes>

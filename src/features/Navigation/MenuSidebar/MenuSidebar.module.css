@@ -2,14 +2,10 @@
     display: flex;
     flex-direction: column;
     justify-content: stretch;
-    /*margin: 5px;*/
-    width: 140px;
+    width: 15em;
 }
 .closeButton{
     align-self: flex-end;
-    margin-bottom: 5px;
+    padding: 10px;
     cursor: pointer;
-}
-.sidebarContainer button{
-    /*margin: 5px;*/
 }
