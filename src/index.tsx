@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import App from './features/App/App';
 import reportWebVitals from './reportWebVitals';
 import {createTheme, ThemeProvider} from "@material-ui/core";
 import {grey, orange} from "@material-ui/core/colors";
 import {Provider} from "react-redux";
-import {store} from "./BLL/store";
+import {store} from "./bll/store";
 import {HashRouter} from "react-router-dom";
 
 
