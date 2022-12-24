@@ -1,25 +1,16 @@
 {
   "files": {
-    "main.css": "/online_store/static/css/main.66babfaa.css",
-    "main.js": "/online_store/static/js/main.48e19609.js",
+    "main.css": "/online_store/static/css/main.33fddbaa.css",
+    "main.js": "/online_store/static/js/main.3cafbf1d.js",
     "static/js/787.a92fe09e.chunk.js": "/online_store/static/js/787.a92fe09e.chunk.js",
-    "static/media/MacBook.jpeg": "/online_store/static/media/MacBook.0343a7612d2e781e0695.jpeg",
-    "static/media/iPad.jpeg": "/online_store/static/media/iPad.f3c04d9ad6c572808b18.jpeg",
-    "static/media/TV.png": "/online_store/static/media/TV.8352f8ecc154b193d03c.png",
-    "static/media/Watch.jpeg": "/online_store/static/media/Watch.7908f71e26fef5dc9795.jpeg",
-    "static/media/iMac.png": "/online_store/static/media/iMac.74bb5c99350d7e9ee366.png",
-    "static/media/case.jpeg": "/online_store/static/media/case.ad13315df1cbdcdeefad.jpeg",
-    "static/media/WatchBand.png": "/online_store/static/media/WatchBand.3aae89e5c0908a0ab042.png",
-    "static/media/iPhone.jpeg": "/online_store/static/media/iPhone.2cbd95eac4d4057c13df.jpeg",
-    "static/media/airPods.webp": "/online_store/static/media/airPods.6350daad5dcbaa9bf1ab.webp",
     "static/media/chevron-down.svg": "/online_store/static/media/chevron-down.70da4d4f01beb7ae2174d2f81ea37643.svg",
     "index.html": "/online_store/index.html",
-    "main.66babfaa.css.map": "/online_store/static/css/main.66babfaa.css.map",
-    "main.48e19609.js.map": "/online_store/static/js/main.48e19609.js.map",
+    "main.33fddbaa.css.map": "/online_store/static/css/main.33fddbaa.css.map",
+    "main.3cafbf1d.js.map": "/online_store/static/js/main.3cafbf1d.js.map",
     "787.a92fe09e.chunk.js.map": "/online_store/static/js/787.a92fe09e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.66babfaa.css",
-    "static/js/main.48e19609.js"
+    "static/css/main.33fddbaa.css",
+    "static/js/main.3cafbf1d.js"
   ]
 }
