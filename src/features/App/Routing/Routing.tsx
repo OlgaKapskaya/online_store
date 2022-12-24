@@ -6,8 +6,8 @@ import {ShopContent} from "../../ShopContent/ShopContent";
 import {ProductCardFull} from "../../ShopContent/ProductCardFull/ProductCardFull";
 import {useAppFetchLogic} from "../hooks/useAppLogic";
 
-export const Routing:FC<{filter: string}> = ({filter}) => {
-    const {isFetching} = useAppFetchLogic()
+export const Routing:FC = ({}) => {
+    const {isFetching, filter} = useAppFetchLogic()
 
     return (
         <Routes>
@@ -15,7 +15,7 @@ export const Routing:FC<{filter: string}> = ({filter}) => {
             <Route path={PATH.CATALOG} element={
                 isFetching
                     ? <Preloader/>
-                    : <ShopContent filter={filter}/>
+                    : <ShopContent />
             }/>
             <Route path={PATH.PRODUCT} element={<ProductCardFull />}/>
 

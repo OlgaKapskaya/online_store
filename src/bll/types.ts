@@ -5,12 +5,15 @@ export type StateType = {
 
 export type ProductDataPageType = {
     data: ProductDataType[]
+    categories: CategoriesType[]
     isFetching: boolean
     currentPage: number
-    pageSize: number,
+    pageSize: number
+    totalCount: number
     sortData: string,
-    sortType: SortType,
+    sortType: SortType
     searchTitle: string
+    filter: string
 }
 
 export type ProductDataType = {
@@ -21,25 +24,18 @@ export type ProductDataType = {
     productDescription: string
     productPrice: number
     productCount: number
-    productCategories: CategoriesType
+    productCategories: string
 }
 
 export type CategoriesType = {
-    type: string
-    model?: {
-        name: string
-    }
+    id: string
+    category: string
 }
-export type BasketProductType = {
-    productID: string
-    productName: string
-    productPhoto: string
-    productArticle: string
-    productPrice: number
+export type BasketProductType = ProductDataType & {
     productCountToBuy: number
 }
 export type OptionsSelectType = {
     id: string
     value: string
 }
-export type SortType = 'desc' | 'asc' | ''
+export type SortType = "desc" | "asc" | ""

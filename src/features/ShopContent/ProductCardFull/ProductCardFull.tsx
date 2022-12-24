@@ -2,7 +2,7 @@ import s from "./ProductCardFull.module.css"
 import {FC, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {ProductDataType} from "../../../bll/types";
-import {catalogAPI} from "../../../dal/api";
+import {catalogAPI} from "../../../dal/catalogAPI";
 import {setFetchingAC} from "../../../bll/reducers/productDataReducer";
 import {Preloader} from "../../../common/components/Preloader/Preloader";
 import {PATH} from "../../../common/utils/constants/constants";

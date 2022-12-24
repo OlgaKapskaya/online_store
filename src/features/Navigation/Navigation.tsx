@@ -5,21 +5,13 @@ import {SearchMenu} from "./SearchMenu/SearchMenu";
 import {MobileMenuNavigation} from "./MobileMenuNavigation/MobileMenuNavigation";
 import {PcMenuNavigation} from "./PcMenuNavigation/PcMenuNavigation";
 
-export type NavigationPropsType = {
-    categories: CategoriesType[]
-    setFilterProductData: (filter: string) => void
-}
 
+export const Navigation: FC = memo(() => {
 
-export const Navigation: FC<NavigationPropsType> = memo(({categories, setFilterProductData}) => {
-
-    const setFilterProductDataHandler = (value:string) => {
-        setFilterProductData(value)
-    }
     return (
         <div className={s.NavigationContainer}>
-            <MobileMenuNavigation setFilterProductData={setFilterProductData} categories={categories}/>
-            <PcMenuNavigation categories={categories} setFilterProductData={setFilterProductDataHandler}/>
+            <MobileMenuNavigation />
+            <PcMenuNavigation />
             <div className={s.searchMenu}>
                 <SearchMenu />
             </div>

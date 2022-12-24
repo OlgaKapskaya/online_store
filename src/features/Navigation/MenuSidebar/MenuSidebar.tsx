@@ -5,20 +5,21 @@ import s from "./MenuSidebar.module.css";
 import {Close} from "@material-ui/icons";
 import {AccordionUC} from "../../../common/components/Accordion/AccordionUC";
 import {SidebarMenuItem} from "../../../common/components/SidebarMenuItem/SidebarMenuItem";
+import {useAppDispatch, useAppSelector} from "../../../common/hooks/react-redux-hooks";
+import {changeFilterAC} from "../../../bll/reducers/productDataReducer";
 
 type MenuSidebarPropsType = {
-    categories: CategoriesType[]
     onVisible: boolean
     setOnVisible: (onVisible: boolean) => void
-    setFilterProductData: (filter: string) => void
 }
-export const MenuSidebar: FC<MenuSidebarPropsType> = ({categories, setFilterProductData, onVisible, setOnVisible}) => {
-
+export const MenuSidebar: FC<MenuSidebarPropsType> = ({onVisible, setOnVisible}) => {
+    const categories = useAppSelector<CategoriesType[]>(state => state.productData.categories)
+    const dispatch = useAppDispatch()
     const handleClose = () => {
         setOnVisible(false);
     };
     const onClickAllButtonHandler = () => {
-        setFilterProductData("all")
+        dispatch(changeFilterAC("all"))
         handleClose()
     }
     const menuItems = (): ReactNode => {
@@ -27,11 +28,12 @@ export const MenuSidebar: FC<MenuSidebarPropsType> = ({categories, setFilterProd
                 <SidebarMenuItem name="ALL" onClick={onClickAllButtonHandler} withBorder/>
                 {categories.map((elem, index) => {
                     const onClickFilterButton = () => {
-                        setFilterProductData(elem.type)
+                        dispatch(changeFilterAC(elem.category))
+                        // setFilterProductData(elem.category)
                         handleClose()
                     }
                     return <div className={s.navLink} key={index}>
-                        <SidebarMenuItem name={elem.type} onClick={onClickFilterButton} withBorder/>
+                        <SidebarMenuItem name={elem.category} onClick={onClickFilterButton} withBorder/>
                     </div>
                 })}
             </>

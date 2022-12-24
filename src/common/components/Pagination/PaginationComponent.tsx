@@ -1,14 +1,16 @@
-import {Pagination} from '@material-ui/lab';
 import {ChangeEvent, FC, memo} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {changeCurrentPageAC} from "../../../bll/reducers/productDataReducer";
-import {AppRootStateType} from "../../../bll/store";
+import {Pagination} from "@material-ui/lab";
+import {useAppSelector} from "../../hooks/react-redux-hooks";
 
-type PaginationComponentPropsType = {
-    pagesCount: number
-}
-export const PaginationComponent: FC<PaginationComponentPropsType> = memo(({pagesCount}) => {
-    const currentPage = useSelector<AppRootStateType, number>(state => state.productData.currentPage)
+
+export const PaginationComponent: FC = memo(() => {
+    const currentPage = useAppSelector<number>(state => state.productData.currentPage)
+    const totalCount = useAppSelector< number>(state => state.productData.totalCount)
+    const pageSize = useAppSelector<number>(state => state.productData.pageSize)
+
+    const pagesCount = Math.ceil(totalCount / pageSize)
     const dispatch = useDispatch()
 
     const paginationStyle = {

@@ -19,7 +19,7 @@ export const state: StateType = {
             productPhoto: iPhone,
             productPrice: 2600,
             productCount: 10,
-            productCategories: {type: "iPhone"},
+            productCategories: "iPhone",
             productArticle: 'MLW33RK/A'
         },
         {
@@ -29,7 +29,7 @@ export const state: StateType = {
             productPhoto: iMac,
             productPrice: 4300,
             productCount: 10,
-            productCategories: {type: 'Mac'},
+            productCategories: 'Mac',
             productArticle: '2CMVVM2'
         },
         {
@@ -39,7 +39,7 @@ export const state: StateType = {
             productPhoto: iPad,
             productPrice: 2500,
             productCount: 10,
-            productCategories: {type: "iPad"},
+            productCategories: "iPad",
             productArticle: 'MLW33RK/A'
         },
         {
@@ -50,7 +50,7 @@ export const state: StateType = {
             productPhoto: Watch,
             productPrice: 900,
             productCount: 10,
-            productCategories: {type: "Watch"}
+            productCategories: "Watch"
         },
         {
             productID: 'b120c5f5-5a97-11ed-90f4-532a5dca7d1c',
@@ -59,7 +59,7 @@ export const state: StateType = {
             productPhoto: MacBook,
             productPrice: 2700,
             productCount: 10,
-            productCategories: {type: "MacBook"},
+            productCategories: "MacBook",
             productArticle: 'MK193RU/A'
         },
         {
@@ -68,7 +68,7 @@ export const state: StateType = {
             productDescription: 'bla-bla-bla',
             productPhoto: Case,
             productPrice: 30,
-            productCategories: {type: "Аксессуары"},
+            productCategories: "Аксессуары",
             productCount: 100,
             productArticle: 'MK193RU/CASE'
         },
@@ -79,7 +79,7 @@ export const state: StateType = {
             productPhoto: TV,
             productPrice: 1500,
             productCount: 11,
-            productCategories: {type: "TV"},
+            productCategories: "TV",
             productArticle: 'MK193RU/TV'
         },
         {
@@ -88,7 +88,7 @@ export const state: StateType = {
             productDescription: 'bla-bla-bla',
             productPhoto: Band,
             productPrice: 50,
-            productCategories: {type: "Аксессуары"},
+            productCategories: "Аксессуары",
             productCount: 100,
             productArticle: 'MK193RU/BAND'
         },
@@ -98,19 +98,19 @@ export const state: StateType = {
             productDescription: 'bla-bla-bla',
             productPhoto: pods,
             productPrice: 870,
-            productCategories: {type: 'AirPods'},
+            productCategories: 'AirPods',
             productCount: 45,
             productArticle: 'MK1HYRU/PODS'
         }
     ],
     categoriesData: [
-        {type: 'Mac'},
-        {type: 'MacBook'},
-        {type: 'iPad'},
-        {type: 'iPhone'},
-        {type: 'Watch'},
-        {type: 'AirPods'},
-        {type: 'Аксессуары'}
+        {id: "1", category: 'Mac'},
+        {id: "2", category: 'MacBook'},
+        {id: "3", category: 'iPad'},
+        {id: "4", category: 'iPhone'},
+        {id: "5", category: 'Watch'},
+        {id: "6", category: 'AirPods'},
+        {id: "7", category: 'Аксессуары'}
     ]
 }
 // export const info = [{

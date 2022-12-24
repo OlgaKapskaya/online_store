@@ -1,6 +1,5 @@
 import React, {useCallback, useState} from "react";
 import "./App.css";
-import {state} from "../../bll/state";
 import {HeaderComponent} from "../Header/HeaderComponent";
 import {Navigation} from "../Navigation/Navigation";
 import {Routing} from "./Routing/Routing";
@@ -12,14 +11,12 @@ function App() {
         setFilter(newFilter)
     }, [filter])
 
-
     return (
         <div className="App">
             <HeaderComponent/>
-            <Navigation categories={state.categoriesData}
-                        setFilterProductData={setFilterProductData}/>
+            <Navigation />
             <div className="content">
-                <Routing filter={filter}/>
+                <Routing/>
             </div>
         </div>
     );

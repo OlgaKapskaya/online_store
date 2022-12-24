@@ -5,18 +5,17 @@ import {ProductDataType} from "../../bll/types";
 import {PaginationComponent} from "../../common/components/Pagination/PaginationComponent";
 import {useAppSelector} from "../../common/hooks/react-redux-hooks";
 
-type ShopContentPropsType = {
-    filter: string
-}
 
 
-export const ShopContent: FC<ShopContentPropsType> = memo(({filter}) => {
+
+export const ShopContent: FC = memo(() => {
     const productData = useAppSelector<ProductDataType[]>(state => state.productData.data)
+    const filter = useAppSelector(state => state.productData.filter)
 
     //filter productData
     let filteredProductData: ProductDataType[]
     if (filter === "all") filteredProductData = productData
-    else filteredProductData = productData.filter(elem => elem.productCategories.type === filter)
+    else filteredProductData = productData.filter(elem => elem.productCategories === filter)
 
     return (
         <div className={s.contentContainer}>
@@ -31,7 +30,7 @@ export const ShopContent: FC<ShopContentPropsType> = memo(({filter}) => {
                     })
                 }
             </div>
-            <PaginationComponent pagesCount={1}/>
+            <PaginationComponent/>
         </div>
     )
 })
