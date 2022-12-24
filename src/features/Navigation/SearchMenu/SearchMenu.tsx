@@ -3,10 +3,10 @@ import s from "./SearchMenu.module.css"
 import {CustomSelect} from "../../../common/components/Select/CustomSelect";
 import {changeSearchTitleAC} from "../../../bll/reducers/productDataReducer";
 import {Search} from "@material-ui/icons";
-import {useAppDispatch} from "../../../bll/store";
 import {Input} from "../../../common/components/Input/Input";
 import InputAdornment from "@material-ui/core/InputAdornment/InputAdornment";
 import {useSelect} from "./hooks/useSelect";
+import {useAppDispatch} from "../../../common/hooks/react-redux-hooks";
 
 export const SearchMenu = () => {
     const dispatch = useAppDispatch()

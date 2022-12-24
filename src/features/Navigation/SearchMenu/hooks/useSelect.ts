@@ -1,7 +1,7 @@
 import {useState} from "react";
-import {useAppDispatch} from "../../../../bll/store";
 import {OptionsSelectType, SortType} from "../../../../bll/types";
 import {changeSortDataTypeAC} from "../../../../bll/reducers/productDataReducer";
+import {useAppDispatch} from "../../../../common/hooks/react-redux-hooks";
 
 export const useSelect = () => {
     const [value, setValue] = useState('Без сортировки')

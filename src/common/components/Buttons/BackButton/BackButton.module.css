@@ -1,0 +1,17 @@
+.backLink {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+}
+
+a {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    color: #212121;
+}
+
+a:hover {
+    color: #ff9100;
+}

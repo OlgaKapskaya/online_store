@@ -1,7 +1,7 @@
 import s from "../Navigation.module.css";
 import {FC} from "react";
 import {NavigationPropsType} from "../Navigation";
-import {ButtonUC} from "../../../common/components/Button/ButtonUC";
+import {ButtonUC} from "../../../common/components/Buttons/Button/ButtonUC";
 
 export interface PcMenuNavigationPropsType extends NavigationPropsType {}
 export const PcMenuNavigation: FC<PcMenuNavigationPropsType> = ({setFilterProductData,categories}) => {

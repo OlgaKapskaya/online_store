@@ -1,8 +1,8 @@
 import {useEffect} from "react";
-import {useAppDispatch, useAppSelector} from "../../../bll/store";
 import {selectBasketData} from "../../../bll/selectors/backetSelectors";
 import {getCatalogTC} from "../../../bll/reducers/productDataReducer";
 import {getBasketIntoLocalStorageTC} from "../../../bll/reducers/basketReducer";
+import {useAppDispatch, useAppSelector} from "../../../common/hooks/react-redux-hooks";
 
 
 

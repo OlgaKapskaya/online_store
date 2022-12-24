@@ -3,7 +3,7 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import {PATH} from "../../../common/utils/constants/constants";
 import {Preloader} from "../../../common/components/Preloader/Preloader";
 import {ShopContent} from "../../ShopContent/ShopContent";
-import {PersonalProductCard} from "../../ShopContent/PersonalProductCard/PersonalProductCard";
+import {ProductCardFull} from "../../ShopContent/ProductCardFull/ProductCardFull";
 import {useAppFetchLogic} from "../hooks/useAppLogic";
 
 export const Routing:FC<{filter: string}> = ({filter}) => {
@@ -17,7 +17,7 @@ export const Routing:FC<{filter: string}> = ({filter}) => {
                     ? <Preloader/>
                     : <ShopContent filter={filter}/>
             }/>
-            <Route path={PATH.PRODUCT} element={<PersonalProductCard />}/>
+            <Route path={PATH.PRODUCT} element={<ProductCardFull />}/>
 
         </Routes>
     )
