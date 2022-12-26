@@ -48,4 +48,6 @@ export type UserType = {
 }
 export type AuthType = UserType & {
     isAuth: boolean
+    isLoading: boolean
 }
+export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'

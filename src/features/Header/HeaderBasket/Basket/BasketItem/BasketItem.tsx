@@ -24,6 +24,7 @@ export const BasketItem: FC<BasketItemPropsType> = ({basketItem}) => {
                     <div className={s.count}>
                         <span>Укажите количество:</span>
                         <Input type="number"
+                               variant="outlined"
                                value={basketItem.productCountToBuy}
                                onChange={onChangeCountOfItem}
                                style={{width: "100px"}}/>

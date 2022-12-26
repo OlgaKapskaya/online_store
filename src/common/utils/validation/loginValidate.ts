@@ -10,7 +10,7 @@ export const loginValidationSchema = yup.object({
         .email('Enter a valid email')
         .required('Email is required'),
     password: yup
-        .string().password()
+        .string()
         .min(MIN_MESSAGE_LENGTH, `Password must contain ${MIN_MESSAGE_LENGTH} or more characters with at least one of each: uppercase, lowercase, number and special`)
         .required('Password is required'),
 });

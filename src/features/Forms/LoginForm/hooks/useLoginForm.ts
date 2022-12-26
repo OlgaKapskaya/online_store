@@ -1,10 +1,11 @@
-import {useAppDispatch} from "../../../../common/hooks/react-redux-hooks";
+import {useAppDispatch, useAppSelector} from "../../../../common/hooks/react-redux-hooks";
 import {useFormik} from "formik";
 import {loginValidationSchema} from "../../../../common/utils/validation/loginValidate";
 import {getUserTC} from "../../../../bll/reducers/userReducer";
 
 export const useLoginForm = () => {
     const dispatch = useAppDispatch()
+    const isLoading = useAppSelector(state => state.users.isLoading)
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -16,5 +17,5 @@ export const useLoginForm = () => {
             actions.resetForm()
         },
     });
-    return {formik}
+    return {formik, isLoading}
 }

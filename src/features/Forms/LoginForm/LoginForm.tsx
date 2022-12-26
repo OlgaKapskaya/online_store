@@ -5,7 +5,7 @@ import {Button} from "@material-ui/core";
 import {useLoginForm} from "./hooks/useLoginForm";
 
 export const LoginForm: FC = () => {
-    const {formik} = useLoginForm()
+    const {formik, isLoading} = useLoginForm()
     return (
         <form onSubmit={formik.handleSubmit} className={s.form}>
             <Input onChange={formik.handleChange}
@@ -22,7 +22,12 @@ export const LoginForm: FC = () => {
                    helperText={formik.touched.password && formik.errors.password}
                    label="Enter your password"
             />
-            <Button type="submit" variant="contained" color="primary"> Login </Button>
+            {
+                isLoading
+                    ? <Button variant="contained" color="primary"> Loading ... </Button>
+                    : <Button type="submit" variant="contained" color="primary"> Login </Button>
+            }
+
         </form>
     )
 }
