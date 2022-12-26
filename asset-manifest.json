@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/online_store/static/css/main.33fddbaa.css",
-    "main.js": "/online_store/static/js/main.3cafbf1d.js",
+    "main.css": "/online_store/static/css/main.b7e3e340.css",
+    "main.js": "/online_store/static/js/main.34dd06b0.js",
     "static/js/787.a92fe09e.chunk.js": "/online_store/static/js/787.a92fe09e.chunk.js",
     "static/media/chevron-down.svg": "/online_store/static/media/chevron-down.70da4d4f01beb7ae2174d2f81ea37643.svg",
     "index.html": "/online_store/index.html",
-    "main.33fddbaa.css.map": "/online_store/static/css/main.33fddbaa.css.map",
-    "main.3cafbf1d.js.map": "/online_store/static/js/main.3cafbf1d.js.map",
+    "main.b7e3e340.css.map": "/online_store/static/css/main.b7e3e340.css.map",
+    "main.34dd06b0.js.map": "/online_store/static/js/main.34dd06b0.js.map",
     "787.a92fe09e.chunk.js.map": "/online_store/static/js/787.a92fe09e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.33fddbaa.css",
-    "static/js/main.3cafbf1d.js"
+    "static/css/main.b7e3e340.css",
+    "static/js/main.34dd06b0.js"
   ]
 }
