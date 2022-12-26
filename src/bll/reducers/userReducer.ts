@@ -17,7 +17,7 @@ export const userReducer = (users = initState, action: UsersActionsType): AuthTy
     switch (action.type) {
         case "SET_USER_DATA":
             return {
-                ...action.users[0],
+                ...action.user,
                 isAuth: true
             }
         default:
@@ -25,8 +25,8 @@ export const userReducer = (users = initState, action: UsersActionsType): AuthTy
     }
 }
 
-export const getUserAC = (users: UserType[]) => {
-    return {type: "SET_USER_DATA", users} as const
+export const getUserAC = (user: UserType) => {
+    return {type: "SET_USER_DATA", user} as const
 }
 
 
@@ -34,6 +34,13 @@ export const getUserTC = (email: string, password: string) => (dispatch: Dispatc
     usersAPI.getUser(email, password)
         .then((res) => {
             if (res.items.length === 1)
+            dispatch(getUserAC(res.items[0]))
+        })
+}
+
+export const registerUserTC = (email: string, password: string) => (dispatch: Dispatch<UsersActionsType>) => {
+    usersAPI.registrationUser(email, password)
+        .then((res) => {
             dispatch(getUserAC(res.items))
         })
 }

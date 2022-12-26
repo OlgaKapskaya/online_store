@@ -1,6 +1,5 @@
 import {FC, ReactNode} from "react";
-import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from "@material-ui/core";
-import {ButtonUC} from "../Buttons/Button/ButtonUC";
+import {Dialog, DialogContent, DialogContentText, DialogTitle} from "@material-ui/core";
 
 
 type FormDialogPropsType = {
@@ -9,9 +8,8 @@ type FormDialogPropsType = {
     title: string
     description?: string
     form: ReactNode
-    buttonName: string
 }
-export const FormDialog: FC<FormDialogPropsType> = ({isOpen, setIsOpen, title, description, form, buttonName}) => {
+export const FormDialog: FC<FormDialogPropsType> = ({isOpen, setIsOpen, title, description, form}) => {
     const handleClose = () => {
         setIsOpen(false)
     }

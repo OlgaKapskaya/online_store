@@ -16,7 +16,7 @@ export const useAppFetchLogic = () => {
     const filter = useAppSelector(selectFilter)
 
     const user = useAppSelector(state => state.users)
-    console.log(user)
+    // console.log(user)
     useEffect(() => {
         dispatch(getCatalogTC(currentPage, sortData, sortType, searchTitle, filter))
     }, [currentPage, dispatch, sortType, sortData, searchTitle, filter])

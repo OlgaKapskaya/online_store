@@ -1,6 +1,5 @@
 import {FC, memo} from "react";
 import s from "./Navigation.module.css"
-import {CategoriesType} from "../../bll/types";
 import {SearchMenu} from "./SearchMenu/SearchMenu";
 import {MobileMenuNavigation} from "./MobileMenuNavigation/MobileMenuNavigation";
 import {PcMenuNavigation} from "./PcMenuNavigation/PcMenuNavigation";

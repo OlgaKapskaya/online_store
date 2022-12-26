@@ -1,25 +1,11 @@
 import {FC} from "react";
-import {useFormik} from "formik";
 import {Input} from "../../../common/components/Input/Input";
-import {loginValidationSchema} from "../../../common/utils/validation/loginValidate";
 import s from "./LoginForm.module.css"
 import {Button} from "@material-ui/core";
-import {useAppDispatch} from "../../../common/hooks/react-redux-hooks";
-import {getUserTC} from "../../../bll/reducers/userReducer";
+import {useLoginForm} from "./hooks/useLoginForm";
 
 export const LoginForm: FC = () => {
-    const dispatch = useAppDispatch()
-    const formik = useFormik({
-        initialValues: {
-            email: '',
-            password: '',
-        },
-        validationSchema: loginValidationSchema,
-        onSubmit: (values, actions) => {
-            dispatch(getUserTC(values.email, values.password))
-            actions.resetForm()
-        },
-    });
+    const {formik} = useLoginForm()
     return (
         <form onSubmit={formik.handleSubmit} className={s.form}>
             <Input onChange={formik.handleChange}
