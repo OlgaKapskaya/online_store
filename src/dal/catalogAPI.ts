@@ -2,7 +2,7 @@ import {CategoriesType, ProductDataType, SortType} from "../bll/types";
 import {getSortedAndSearchQueryString} from "../common/utils/helpers/getSortedAndSearchQueryString";
 import {instance, limitDefault} from "../common/utils/constants/api/instance";
 
-type ResponseType<D = ProductDataType[]> = {
+export type ResponseType<D = ProductDataType[]> = {
     items: D
     count: number
 }

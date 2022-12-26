@@ -1,38 +1,33 @@
 import React, {ChangeEvent, FC} from "react";
-import {OutlinedInputProps, TextField} from "@material-ui/core";
+import {TextField} from "@material-ui/core";
+import {TextFieldProps} from "@material-ui/core/TextField/TextField";
 
-type InputPropsType = {
-    type?: string
+type InputPropsType = TextFieldProps & {
     value?: string | number
     onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-    style?: object
-    InputProps?: Partial<OutlinedInputProps> | undefined
-    className?: string
-    placeholder?: string
     color?: "primary" | "secondary"
+    label?: string | false | undefined
+    helperText?: string | false | undefined
 
 }
 export const Input: FC<InputPropsType> = ({
-                                              type,
                                               onChange,
                                               value,
-                                              style,
                                               InputProps,
-                                              className,
-                                              placeholder,
-                                              color
+                                              color,
+                                              label,
+                                              helperText,
+                                              ...restProps
                                           }) => {
     return (
-        <TextField type={type}
+        <TextField
+                   label={label}
                    color={color ? color : "secondary"}
-                   style={style}
                    size="small"
-                   variant="outlined"
-                   placeholder={placeholder}
+                   helperText={helperText}
                    value={value}
                    onChange={onChange}
-                   InputProps={InputProps}
-                   className={className}
+                   {...restProps}
         />
     )
 }

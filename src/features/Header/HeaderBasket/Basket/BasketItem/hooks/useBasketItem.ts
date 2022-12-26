@@ -1,7 +1,7 @@
-import {changeCountItemToBuyAC, removeItemFromBasketAC} from "../../../../../bll/reducers/basketReducer";
+import {changeCountItemToBuyAC, removeItemFromBasketAC} from "../../../../../../bll/reducers/basketReducer";
 import {ChangeEvent, useCallback} from "react";
-import {BasketProductType} from "../../../../../bll/types";
-import {useAppDispatch} from "../../../../../common/hooks/react-redux-hooks";
+import {BasketProductType} from "../../../../../../bll/types";
+import {useAppDispatch} from "../../../../../../common/hooks/react-redux-hooks";
 
 export const useBasketItem = (item: BasketProductType) => {
     const dispatch = useAppDispatch()

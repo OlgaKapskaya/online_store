@@ -39,3 +39,13 @@ export type OptionsSelectType = {
     value: string
 }
 export type SortType = "desc" | "asc" | ""
+
+export type UserType = {
+    id: string
+    email: string
+    password: string
+    orders: any[]
+}
+export type AuthType = UserType & {
+    isAuth: boolean
+}

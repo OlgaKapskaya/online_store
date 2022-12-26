@@ -7,6 +7,7 @@ import {AccordionUC} from "../../../common/components/Accordion/AccordionUC";
 import {SidebarMenuItem} from "../../../common/components/SidebarMenuItem/SidebarMenuItem";
 import {useAppDispatch, useAppSelector} from "../../../common/hooks/react-redux-hooks";
 import {changeFilterAC} from "../../../bll/reducers/productDataReducer";
+import {MenuButtonsGroup} from "../../Header/MenuButtonsGroup/MenuButtonsGroup";
 
 type MenuSidebarPropsType = {
     onVisible: boolean
@@ -29,7 +30,6 @@ export const MenuSidebar: FC<MenuSidebarPropsType> = ({onVisible, setOnVisible})
                 {categories.map((elem, index) => {
                     const onClickFilterButton = () => {
                         dispatch(changeFilterAC(elem.category))
-                        // setFilterProductData(elem.category)
                         handleClose()
                     }
                     return <div className={s.navLink} key={index}>
@@ -49,9 +49,7 @@ export const MenuSidebar: FC<MenuSidebarPropsType> = ({onVisible, setOnVisible})
                 <Close className={s.closeButton} onClick={() => setOnVisible(false)}/>
 
                 <AccordionUC name="categories" label="Каталог" details={menuItems()}/>
-                <SidebarMenuItem name="Адреса магазинов" withBorder/>
-                <SidebarMenuItem name="Оплата и доставка" withBorder/>
-                <SidebarMenuItem name="Сервисный центр" withBorder/>
+                <MenuButtonsGroup/>
             </div>
         </Drawer>
     )

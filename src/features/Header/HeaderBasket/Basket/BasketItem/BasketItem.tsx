@@ -1,10 +1,10 @@
 import {FC} from "react";
 import s from "./BasketItem.module.css"
-import {BasketProductType} from "../../../../bll/types";
-import {DeleteButton} from "../../../../common/components/Buttons/DeleteButton/DeleteButton";
-import {Input} from "../../../../common/components/Input/Input";
+import {BasketProductType} from "../../../../../bll/types";
+import {DeleteButton} from "../../../../../common/components/Buttons/DeleteButton/DeleteButton";
+import {Input} from "../../../../../common/components/Input/Input";
 import {useBasketItem} from "./hooks/useBasketItem";
-import {CURRENCY} from "../../../../common/utils/constants/constants";
+import {CURRENCY} from "../../../../../common/utils/constants/constants";
 
 
 type BasketItemPropsType = {

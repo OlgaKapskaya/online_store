@@ -1,15 +1,21 @@
-import React from "react";
-import s from './HeaderComponent.module.css'
+import {FC} from "react";
+import s from "./HeaderComponent.module.css"
 import {HeaderLogo} from "./HeaderLogo/HeaderLogo";
-import {HeaderWorkTime} from "./HeaderWorkTime/HeaderWorkTime";
 import {HeaderBasket} from "./HeaderBasket/HeaderBasket";
+import {LoginRegistration} from "./LoginRegistration/LoginRegistration";
 
-export const HeaderComponent =() => {
+export const HeaderComponent: FC = () => {
+
     return (
-        <div className={s.HeaderContainer}>
-            <HeaderLogo/>
-            <HeaderWorkTime/>
-            <HeaderBasket/>
+        <div>
+            <section className={s.HeaderContainer}>
+                <HeaderLogo/>
+                <section className={s.loginAndBasket}>
+                    <HeaderBasket/>
+                    <LoginRegistration/>
+                </section>
+
+            </section>
         </div>
     )
 }

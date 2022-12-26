@@ -2,6 +2,9 @@
     .workTimeContainer_ALL {
         display: none;
     }
+    .topMenu {
+        display: none;
+    }
 }
 
 .workTimeContainer {
@@ -45,6 +48,9 @@
 
 .basketContainer {
     margin: 10px;
+}
+.loginAndBasket{
+    display: flex;
 }
 
 

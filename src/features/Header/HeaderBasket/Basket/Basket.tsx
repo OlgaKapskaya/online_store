@@ -2,11 +2,11 @@ import s from "./Basket.module.css"
 import {Drawer} from "@material-ui/core";
 import {BasketItem} from "./BasketItem/BasketItem";
 import React, {FC} from "react";
-import {clearBasketTC} from "../../../bll/reducers/basketReducer";
+import {clearBasketTC} from "../../../../bll/reducers/basketReducer";
 import {BasketHeader} from "./BasketHeader/BasketHeader";
-import {selectBasketData} from "../../../bll/selectors/backetSelectors";
-import {ButtonUC} from "../../../common/components/Buttons/Button/ButtonUC";
-import {useAppDispatch, useAppSelector} from "../../../common/hooks/react-redux-hooks";
+import {selectBasketData} from "../../../../bll/selectors/backetSelectors";
+import {ButtonUC} from "../../../../common/components/Buttons/Button/ButtonUC";
+import {useAppDispatch, useAppSelector} from "../../../../common/hooks/react-redux-hooks";
 
 
 type BasketProsType = {

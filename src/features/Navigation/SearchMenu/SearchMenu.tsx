@@ -21,6 +21,7 @@ export const SearchMenu = () => {
                    placeholder="Введите название"
                    className={s.searchField}
                    color="primary"
+                   variant="outlined"
                    InputProps={{
                        startAdornment: (
                            <InputAdornment position='start'>
