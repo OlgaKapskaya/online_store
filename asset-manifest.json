@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/online_store/static/css/main.eb8504f0.css",
-    "main.js": "/online_store/static/js/main.fcbbb95e.js",
+    "main.css": "/online_store/static/css/main.8c09fba7.css",
+    "main.js": "/online_store/static/js/main.7e6533e7.js",
     "static/js/787.a92fe09e.chunk.js": "/online_store/static/js/787.a92fe09e.chunk.js",
     "static/media/MacBook.jpeg": "/online_store/static/media/MacBook.0343a7612d2e781e0695.jpeg",
     "static/media/iPad.jpeg": "/online_store/static/media/iPad.f3c04d9ad6c572808b18.jpeg",
@@ -14,12 +14,12 @@
     "static/media/airPods.webp": "/online_store/static/media/airPods.6350daad5dcbaa9bf1ab.webp",
     "static/media/chevron-down.svg": "/online_store/static/media/chevron-down.70da4d4f01beb7ae2174d2f81ea37643.svg",
     "index.html": "/online_store/index.html",
-    "main.eb8504f0.css.map": "/online_store/static/css/main.eb8504f0.css.map",
-    "main.fcbbb95e.js.map": "/online_store/static/js/main.fcbbb95e.js.map",
+    "main.8c09fba7.css.map": "/online_store/static/css/main.8c09fba7.css.map",
+    "main.7e6533e7.js.map": "/online_store/static/js/main.7e6533e7.js.map",
     "787.a92fe09e.chunk.js.map": "/online_store/static/js/787.a92fe09e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb8504f0.css",
-    "static/js/main.fcbbb95e.js"
+    "static/css/main.8c09fba7.css",
+    "static/js/main.7e6533e7.js"
   ]
 }
