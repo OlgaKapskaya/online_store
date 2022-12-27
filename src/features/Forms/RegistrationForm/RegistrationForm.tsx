@@ -18,28 +18,28 @@ export const RegistrationForm: FC<RegistrationFormPropsType> = ({setIsOpen}) => 
                    value={formik.values.email}
                    name="email"
                    helperText={formik.touched.email && formik.errors.email}
-                   label="Enter your email"
+                   label="Введите email"
             />
             <Input onChange={formik.handleChange}
                    type="password"
                    value={formik.values.password}
                    name="password"
                    helperText={formik.touched.password && formik.errors.password}
-                   label="Enter your password"
+                   label="Введите пароль"
             />
             <Input onChange={formik.handleChange}
                    type="password"
                    value={formik.values.passwordRepeat}
                    name="passwordRepeat"
                    helperText={formik.touched.passwordRepeat && formik.errors.passwordRepeat}
-                   label="Repeat your password"
+                   label="Повторите пароль"
             />
             {
                 isLoading
                     ? <Button variant="contained" color="primary"> Loading ... </Button>
-                    : <Button type="submit" variant="contained" color="primary"> Register </Button>
+                    : <Button type="submit" variant="contained" color="primary"> Регистрация </Button>
             }
-        <SnackBar type="error" message="The entered passwords do not match." show={showHint}/>
+        <SnackBar type="error" message="Пароли не совпадают" show={showHint}/>
         </form>
     )
 }

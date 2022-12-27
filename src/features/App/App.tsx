@@ -9,6 +9,7 @@ import {useAppSelector} from "../../common/hooks/react-redux-hooks";
 
 function App() {
     const error = useAppSelector(state => state.app.error)
+    const message = useAppSelector(state => state.app.message)
 
     return (
         <div className="App">
@@ -18,6 +19,7 @@ function App() {
                 <Routing/>
             </div>
             <SnackBar type="error" message={error ? error : ""} show={!!error}/>
+            <SnackBar type="success" message={message ? message : ""} show={!!message}/>
         </div>
     );
 }

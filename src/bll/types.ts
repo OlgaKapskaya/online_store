@@ -44,10 +44,23 @@ export type UserType = {
     id: string
     email: string
     password: string
-    orders: any[]
+    orders: OrderType[]
 }
 export type AuthType = UserType & {
     isAuth: boolean
     isLoading: boolean
 }
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
+export type OrderPayloadType = {
+    userID: string
+    order: BasketProductType[]
+    totalPrice: number
+}
+
+export type OrderType = {
+    createdAt: string
+    id: string
+    order: BasketProductType[]
+    totalPrice: number
+    userID: string
+}

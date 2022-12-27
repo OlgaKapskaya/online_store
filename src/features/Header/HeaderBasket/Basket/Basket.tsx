@@ -1,5 +1,5 @@
 import s from "./Basket.module.css"
-import {Drawer} from "@material-ui/core";
+import {Button, Drawer} from "@material-ui/core";
 import {BasketItem} from "./BasketItem/BasketItem";
 import React, {FC} from "react";
 import {clearBasketTC} from "../../../../bll/reducers/basketReducer";
@@ -7,6 +7,7 @@ import {BasketHeader} from "./BasketHeader/BasketHeader";
 import {selectBasketData} from "../../../../bll/selectors/backetSelectors";
 import {ButtonUC} from "../../../../common/components/Buttons/Button/ButtonUC";
 import {useAppDispatch, useAppSelector} from "../../../../common/hooks/react-redux-hooks";
+import {addOrderTC} from "../../../../bll/reducers/userReducer";
 
 
 type BasketProsType = {
@@ -22,9 +23,14 @@ export const Basket: FC<BasketProsType> = ({
 
     const dispatch = useAppDispatch()
     const basketProduct = useAppSelector(selectBasketData)
+    const isLoading = useAppSelector(state => state.app.isLoading)
 
     const onClearBasketHandler = () => {
         dispatch(clearBasketTC())
+    }
+
+    const addOrderHandler = () => {
+        dispatch(addOrderTC(basketProduct, totalPrice))
     }
 
     return (
@@ -37,11 +43,16 @@ export const Basket: FC<BasketProsType> = ({
                           disabled={!basketProduct.length}
                           onClick={onClearBasketHandler}
                 />
-                <ButtonUC name="Оформить заказ"
-                          color="secondary"
-                          disabled={!basketProduct.length}
-                          onClick={() => {}}
-                />
+                {
+                    isLoading
+                        ? <Button variant="contained" color="primary"> Loading ... </Button>
+                        : <ButtonUC name="Оформить заказ"
+                                    color="secondary"
+                                    disabled={!basketProduct.length}
+                                    onClick={addOrderHandler}
+                        />
+                }
+
             </div>
             {
                 basketProduct.map(elem => <BasketItem key={elem.productID}

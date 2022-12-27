@@ -23,11 +23,11 @@ export const LoginRegistration: FC = () => {
 const LoginMenu:FC<MenuPropsType> = ({isVisible, setIsVisible}) => {
     return (
         <>
-            <IconsButton onClick={() => setIsVisible(true)} icon={<ExitToApp/>} hint="Login"/>
+            <IconsButton onClick={() => setIsVisible(true)} icon={<ExitToApp/>} hint="Вход"/>
             <FormDialog form={<LoginForm/>}
                         isOpen={isVisible}
                         setIsOpen={setIsVisible}
-                        title="Login"
+                        title="Вход"
             />
         </>
     )
@@ -35,11 +35,11 @@ const LoginMenu:FC<MenuPropsType> = ({isVisible, setIsVisible}) => {
 const RegisterMenu:FC<MenuPropsType> = ({isVisible, setIsVisible}) => {
     return (
         <>
-            <IconsButton onClick={() => setIsVisible(true)} icon={<LockOpen/>} hint="Register"/>
+            <IconsButton onClick={() => setIsVisible(true)} icon={<LockOpen/>} hint="Регистрация"/>
             <FormDialog form={<RegistrationForm setIsOpen={setIsVisible}/>}
                         isOpen={isVisible}
                         setIsOpen={setIsVisible}
-                        title="Registration"
+                        title="Регистрация"
             />
         </>
     )

@@ -13,19 +13,19 @@ export const LoginForm: FC = () => {
                    value={formik.values.email}
                    name="email"
                    helperText={formik.touched.email && formik.errors.email}
-                   label="Enter your email"
+                   label="Введите email"
             />
             <Input onChange={formik.handleChange}
                    type="password"
                    value={formik.values.password}
                    name="password"
                    helperText={formik.touched.password && formik.errors.password}
-                   label="Enter your password"
+                   label="Введите пароль"
             />
             {
                 isLoading
                     ? <Button variant="contained" color="primary"> Loading ... </Button>
-                    : <Button type="submit" variant="contained" color="primary"> Login </Button>
+                    : <Button type="submit" variant="contained" color="primary"> Войти </Button>
             }
 
         </form>
